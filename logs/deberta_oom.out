@@ -1,0 +1,95 @@
+pool 212623 val 2699 (select 2159, holdout 540) weight max 17.3 ESS 100703
+tokenised 21s, mean 140 max 512
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/198 [00:00<?, ?it/s]Loading weights: 100%|██████████| 198/198 [00:00<00:00, 2480.75it/s]
+[transformers] [1mDebertaV2ForSequenceClassification LOAD REPORT[0m from: microsoft/deberta-v3-base
+Key                                     | Status     | 
+----------------------------------------+------------+-
+lm_predictions.lm_head.dense.bias       | UNEXPECTED | 
+lm_predictions.lm_head.bias             | UNEXPECTED | 
+lm_predictions.lm_head.dense.weight     | UNEXPECTED | 
+mask_predictions.LayerNorm.weight       | UNEXPECTED | 
+mask_predictions.classifier.bias        | UNEXPECTED | 
+mask_predictions.classifier.weight      | UNEXPECTED | 
+lm_predictions.lm_head.LayerNorm.bias   | UNEXPECTED | 
+mask_predictions.dense.bias             | UNEXPECTED | 
+lm_predictions.lm_head.LayerNorm.weight | UNEXPECTED | 
+mask_predictions.LayerNorm.bias         | UNEXPECTED | 
+mask_predictions.dense.weight           | UNEXPECTED | 
+classifier.bias                         | MISSING    | 
+classifier.weight                       | MISSING    | 
+pooler.dense.weight                     | MISSING    | 
+pooler.dense.bias                       | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s]Writing model shards: 100%|██████████| 1/1 [00:00<00:00,  1.33it/s]Writing model shards: 100%|██████████| 1/1 [00:00<00:00,  1.33it/s]
+{"step": 1661, "ep": 0.25, "loss": 2.1628, "select": 0.3562, "holdout": 0.3148, "all": 0.3479, "family": 0.7425, "min_class_preds": 0, "max_class_preds": 447, "mins": 4.0} *
+Traceback (most recent call last):
+  File "/home/goldentom/py-repos/name-that-llm/src/train_pool.py", line 134, in <module>
+    main()
+  File "/home/goldentom/py-repos/name-that-llm/src/train_pool.py", line 111, in main
+    lg = model(**b).logits
+         ^^^^^^^^^^
+  File "/home/goldentom/py-repos/name-that-llm/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1779, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/goldentom/py-repos/name-that-llm/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1790, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/goldentom/py-repos/name-that-llm/.venv/lib/python3.12/site-packages/transformers/models/deberta_v2/modeling_deberta_v2.py", line 1042, in forward
+    outputs = self.deberta(
+              ^^^^^^^^^^^^^
+  File "/home/goldentom/py-repos/name-that-llm/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1779, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/goldentom/py-repos/name-that-llm/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1790, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/goldentom/py-repos/name-that-llm/.venv/lib/python3.12/site-packages/transformers/models/deberta_v2/modeling_deberta_v2.py", line 763, in forward
+    encoder_outputs = self.encoder(
+                      ^^^^^^^^^^^^^
+  File "/home/goldentom/py-repos/name-that-llm/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1779, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/goldentom/py-repos/name-that-llm/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1790, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/goldentom/py-repos/name-that-llm/.venv/lib/python3.12/site-packages/transformers/models/deberta_v2/modeling_deberta_v2.py", line 651, in forward
+    output_states, attn_weights = layer_module(
+                                  ^^^^^^^^^^^^^
+  File "/home/goldentom/py-repos/name-that-llm/.venv/lib/python3.12/site-packages/transformers/modeling_layers.py", line 111, in __call__
+    return super().__call__(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/goldentom/py-repos/name-that-llm/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1779, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/goldentom/py-repos/name-that-llm/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1790, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/goldentom/py-repos/name-that-llm/.venv/lib/python3.12/site-packages/transformers/models/deberta_v2/modeling_deberta_v2.py", line 432, in forward
+    attention_output, att_matrix = self.attention(
+                                   ^^^^^^^^^^^^^^^
+  File "/home/goldentom/py-repos/name-that-llm/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1779, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/goldentom/py-repos/name-that-llm/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1790, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/goldentom/py-repos/name-that-llm/.venv/lib/python3.12/site-packages/transformers/models/deberta_v2/modeling_deberta_v2.py", line 365, in forward
+    self_output, att_matrix = self.self(
+                              ^^^^^^^^^^
+  File "/home/goldentom/py-repos/name-that-llm/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1779, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/goldentom/py-repos/name-that-llm/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1790, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/goldentom/py-repos/name-that-llm/.venv/lib/python3.12/site-packages/transformers/models/deberta_v2/modeling_deberta_v2.py", line 246, in forward
+    rel_att = self.disentangled_attention_bias(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/goldentom/py-repos/name-that-llm/.venv/lib/python3.12/site-packages/transformers/models/deberta_v2/modeling_deberta_v2.py", line 324, in disentangled_attention_bias
+    score += c2p_att / scale.to(dtype=c2p_att.dtype)
+             ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 192.00 MiB. GPU 0 has a total capacity of 23.56 GiB of which 53.81 MiB is free. Including non-PyTorch memory, this process has 23.27 GiB memory in use. Of the allocated memory 21.41 GiB is allocated by PyTorch, and 1.55 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)

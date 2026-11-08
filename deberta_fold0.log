@@ -1,0 +1,31 @@
+max tokens 351
+W1105 16:01:08.400000 68720 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/198 [00:00<?, ?it/s]Loading weights: 100%|██████████| 198/198 [00:00<00:00, 5816.16it/s]
+[transformers] [1mDebertaV2ForSequenceClassification LOAD REPORT[0m from: microsoft/deberta-v3-base
+Key                                     | Status     | 
+----------------------------------------+------------+-
+lm_predictions.lm_head.dense.bias       | UNEXPECTED | 
+mask_predictions.LayerNorm.weight       | UNEXPECTED | 
+mask_predictions.classifier.bias        | UNEXPECTED | 
+mask_predictions.classifier.weight      | UNEXPECTED | 
+mask_predictions.dense.bias             | UNEXPECTED | 
+lm_predictions.lm_head.LayerNorm.weight | UNEXPECTED | 
+lm_predictions.lm_head.dense.weight     | UNEXPECTED | 
+lm_predictions.lm_head.LayerNorm.bias   | UNEXPECTED | 
+mask_predictions.LayerNorm.bias         | UNEXPECTED | 
+lm_predictions.lm_head.bias             | UNEXPECTED | 
+mask_predictions.dense.weight           | UNEXPECTED | 
+classifier.weight                       | MISSING    | 
+pooler.dense.bias                       | MISSING    | 
+classifier.bias                         | MISSING    | 
+pooler.dense.weight                     | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+ep 0 loss 2.804 val_acc 0.1056 (270s)
+ep 1 loss 2.490 val_acc 0.1519 (283s)
+ep 2 loss 2.304 val_acc 0.1519 (286s)
+ep 3 loss 2.159 val_acc 0.1741 (281s)
+ep 4 loss 2.022 val_acc 0.2167 (277s)
+ep 5 loss 1.954 val_acc 0.2130 (286s)

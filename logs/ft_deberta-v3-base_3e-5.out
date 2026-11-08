@@ -1,0 +1,15 @@
+Loading weights:   0%|          | 0/202 [00:00<?, ?it/s]Loading weights: 100%|██████████| 202/202 [00:00<00:00, 3005.46it/s]
+fold 0 last-epoch acc 0.4833 (81s)
+Loading weights:   0%|          | 0/202 [00:00<?, ?it/s]Loading weights: 100%|██████████| 202/202 [00:00<00:00, 3208.01it/s]
+fold 1 last-epoch acc 0.4852 (161s)
+Loading weights:   0%|          | 0/202 [00:00<?, ?it/s]Loading weights: 100%|██████████| 202/202 [00:00<00:00, 3251.06it/s]
+fold 2 last-epoch acc 0.5185 (240s)
+Loading weights:   0%|          | 0/202 [00:00<?, ?it/s]Loading weights: 100%|██████████| 202/202 [00:00<00:00, 3005.42it/s]
+fold 3 last-epoch acc 0.5352 (319s)
+Loading weights:   0%|          | 0/202 [00:00<?, ?it/s]Loading weights: 100%|██████████| 202/202 [00:00<00:00, 2822.85it/s]
+fold 4 last-epoch acc 0.5176 (398s)
+pool-only deberta-v3-base: select 0.5137 holdout 0.5000 all 0.5109
+{"model": "deberta-v3-base", "lr": 3e-05, "ep": 1, "select": 0.5072, "holdout": 0.4685, "all": 0.4994}
+{"model": "deberta-v3-base", "lr": 3e-05, "ep": 2, "select": 0.4993, "holdout": 0.4889, "all": 0.4972}
+{"model": "deberta-v3-base", "lr": 3e-05, "ep": 3, "select": 0.5095, "holdout": 0.4796, "all": 0.5035}
+{"model": "deberta-v3-base", "lr": 3e-05, "ep": 4, "select": 0.51, "holdout": 0.5, "all": 0.508}

@@ -1,0 +1,10 @@
+{
+  "title": "NTL Qwen LoRA",
+  "id": "ogrellier/ntl-qwen-lora",
+  "licenses": [
+    {
+      "name": "other"
+    }
+  ],
+  "description": "Two LoRA adapters (r=16, alpha 32, all attention/MLP projections) plus trained 18-class score heads for Qwen2.5-1.5B (base) as a sequence classifier. Qwen2.5-1.5B-lora-full/: one epoch on the Name That LLM open pool. Qwen2.5-1.5B-lora-mix/: lora-full continued on all of train.csv (x5) mixed with 20k pool rows. Merged by hand in latest_predict.py (no peft needed). Saved with peft 0.21.2."
+}

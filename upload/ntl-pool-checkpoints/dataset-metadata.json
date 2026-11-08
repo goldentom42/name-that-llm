@@ -1,0 +1,6 @@
+{
+  "title": "NTL pool checkpoints",
+  "id": "ogrellier/ntl-pool-checkpoints",
+  "licenses": [{"name": "other"}],
+  "description": "ModernBERT-base and DeBERTa-v3-base fine-tuned on the Name That LLM open pool (18 classes, labels in config.json id2label). Load the tokenizer from tokenizer.json with PreTrainedTokenizerFast (saved by transformers 5.22)."
+}

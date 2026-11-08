@@ -1,0 +1,14 @@
+== Qwen: logs/val_qwen_lora_fp16.npy
+plain-argmax optimum: weights {'oof_blend.npy': np.float64(0.1), 'val_pool_tfidf_match_weight_1e-06.npy': np.float64(0.2), 'val_ModernBERT-base.npy': np.float64(0.2), 'val_deberta-v3-base.npy': np.float64(0.1), 'logs/val_qwen_lora_fp16.npy': np.float64(0.4)} temps (3, 3, 2)
+   plain   select 0.6332 holdout 0.5759 all 0.6217
+   grouped select 0.7707 holdout 0.7407 all 0.7647
+grouped optimum: weights {'oof_blend.npy': np.float64(0.2), 'val_pool_tfidf_match_weight_1e-06.npy': np.float64(0.1), 'val_ModernBERT-base.npy': np.float64(0.2), 'val_deberta-v3-base.npy': np.float64(0.1), 'logs/val_qwen_lora_fp16.npy': np.float64(0.4)} temps (3, 3, 5)
+   plain   select 0.6230 holdout 0.5593 all 0.6102
+   grouped select 0.7934 holdout 0.7241 all 0.7795
+== Qwen: oof_qwen_mix_full.npy
+plain-argmax optimum: weights {'oof_blend.npy': np.float64(0.1), 'val_pool_tfidf_match_weight_1e-06.npy': np.float64(0.2), 'val_ModernBERT-base.npy': np.float64(0.3), 'val_deberta-v3-base.npy': np.float64(0.1), 'oof_qwen_mix_full.npy': np.float64(0.3)} temps (3, 5, 2)
+   plain   select 0.6383 holdout 0.5907 all 0.6288
+   grouped select 0.7735 holdout 0.7722 all 0.7732
+grouped optimum: weights {'oof_blend.npy': np.float64(0.2), 'val_pool_tfidf_match_weight_1e-06.npy': np.float64(0.1), 'val_ModernBERT-base.npy': np.float64(0.3), 'val_deberta-v3-base.npy': np.float64(0.1), 'oof_qwen_mix_full.npy': np.float64(0.3)} temps (2, 5, 3)
+   plain   select 0.6276 holdout 0.5907 all 0.6202
+   grouped select 0.8018 holdout 0.7296 all 0.7873

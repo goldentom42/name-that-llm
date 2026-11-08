@@ -1,0 +1,15 @@
+Loading weights:   0%|          | 0/138 [00:00<?, ?it/s]Loading weights: 100%|██████████| 138/138 [00:00<00:00, 3582.81it/s]
+fold 0 last-epoch acc 0.5056 (76s)
+Loading weights:   0%|          | 0/138 [00:00<?, ?it/s]Loading weights: 100%|██████████| 138/138 [00:00<00:00, 3610.75it/s]
+fold 1 last-epoch acc 0.5426 (152s)
+Loading weights:   0%|          | 0/138 [00:00<?, ?it/s]Loading weights: 100%|██████████| 138/138 [00:00<00:00, 3206.67it/s]
+fold 2 last-epoch acc 0.5426 (227s)
+Loading weights:   0%|          | 0/138 [00:00<?, ?it/s]Loading weights: 100%|██████████| 138/138 [00:00<00:00, 3629.84it/s]
+fold 3 last-epoch acc 0.5611 (303s)
+Loading weights:   0%|          | 0/138 [00:00<?, ?it/s]Loading weights: 100%|██████████| 138/138 [00:00<00:00, 3597.33it/s]
+fold 4 last-epoch acc 0.5788 (378s)
+pool-only ModernBERT-base: select 0.5595 holdout 0.5037 all 0.5484
+{"model": "ModernBERT-base", "lr": 4e-05, "ep": 1, "select": 0.5063, "holdout": 0.4944, "all": 0.5039}
+{"model": "ModernBERT-base", "lr": 4e-05, "ep": 2, "select": 0.5345, "holdout": 0.5111, "all": 0.5298}
+{"model": "ModernBERT-base", "lr": 4e-05, "ep": 3, "select": 0.547, "holdout": 0.5278, "all": 0.5432}
+{"model": "ModernBERT-base", "lr": 4e-05, "ep": 4, "select": 0.554, "holdout": 0.5148, "all": 0.5461}

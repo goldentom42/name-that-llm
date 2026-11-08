@@ -1,0 +1,5 @@
+{"step": 781, "ep": 0.25, "loss": 2.3741, "select": 0.3214, "holdout": 0.3167, "all": 0.3205, "min_class_preds": 0, "max_class_preds": 622, "mins": 8.8}
+{"step": 1562, "ep": 0.5, "loss": 1.6556, "select": 0.409, "holdout": 0.3778, "all": 0.4027, "min_class_preds": 1, "max_class_preds": 412, "mins": 17.5}
+{"step": 2343, "ep": 0.75, "loss": 1.4453, "select": 0.4678, "holdout": 0.4444, "all": 0.4631, "min_class_preds": 16, "max_class_preds": 263, "mins": 26.3}
+{"step": 3124, "ep": 1.0, "loss": 1.3463, "select": 0.4896, "holdout": 0.4352, "all": 0.4787, "min_class_preds": 20, "max_class_preds": 315, "mins": 35.1}
+{"step": 3125, "ep": 1.0, "loss": 0.7577, "select": 0.4896, "holdout": 0.4352, "all": 0.4787, "min_class_preds": 20, "max_class_preds": 315, "mins": 35.5}

@@ -1,0 +1,13 @@
+{"step": 1661, "ep": 0.25, "loss": 2.1986, "select": 0.3733, "holdout": 0.3296, "all": 0.3646, "family": 0.718, "min_class_preds": 22, "max_class_preds": 423, "mins": 4.0}
+{"step": 3322, "ep": 0.5, "loss": 1.6242, "select": 0.4298, "holdout": 0.4259, "all": 0.429, "family": 0.7399, "min_class_preds": 41, "max_class_preds": 296, "mins": 8.0}
+{"step": 4983, "ep": 0.75, "loss": 1.4627, "select": 0.4595, "holdout": 0.45, "all": 0.4576, "family": 0.7651, "min_class_preds": 23, "max_class_preds": 290, "mins": 12.1}
+{"step": 6644, "ep": 1.0, "loss": 1.3706, "select": 0.5016, "holdout": 0.4796, "all": 0.4972, "family": 0.7814, "min_class_preds": 14, "max_class_preds": 287, "mins": 16.1}
+{"step": 8305, "ep": 1.25, "loss": 1.1433, "select": 0.5081, "holdout": 0.4704, "all": 0.5006, "family": 0.7729, "min_class_preds": 39, "max_class_preds": 257, "mins": 20.2}
+{"step": 9966, "ep": 1.5, "loss": 1.0989, "select": 0.5188, "holdout": 0.4648, "all": 0.508, "family": 0.7614, "min_class_preds": 96, "max_class_preds": 247, "mins": 24.2}
+{"step": 11627, "ep": 1.75, "loss": 1.0815, "select": 0.5595, "holdout": 0.5037, "all": 0.5484, "family": 0.8122, "min_class_preds": 62, "max_class_preds": 207, "mins": 28.2}
+{"step": 13288, "ep": 2.0, "loss": 1.0581, "select": 0.5591, "holdout": 0.5241, "all": 0.5521, "family": 0.8051, "min_class_preds": 103, "max_class_preds": 203, "mins": 32.3}
+{"step": 14949, "ep": 2.25, "loss": 0.7626, "select": 0.5475, "holdout": 0.5093, "all": 0.5398, "family": 0.7973, "min_class_preds": 92, "max_class_preds": 227, "mins": 36.2}
+{"step": 16610, "ep": 2.5, "loss": 0.7325, "select": 0.5493, "holdout": 0.5148, "all": 0.5424, "family": 0.8003, "min_class_preds": 124, "max_class_preds": 205, "mins": 40.2}
+{"step": 18271, "ep": 2.75, "loss": 0.7122, "select": 0.5535, "holdout": 0.5111, "all": 0.545, "family": 0.7966, "min_class_preds": 102, "max_class_preds": 229, "mins": 44.3}
+{"step": 19932, "ep": 3.0, "loss": 0.7102, "select": 0.5558, "holdout": 0.5111, "all": 0.5469, "family": 0.7999, "min_class_preds": 91, "max_class_preds": 236, "mins": 48.3}
+{"step": 19935, "ep": 3.0, "loss": 0.5405, "select": 0.5558, "holdout": 0.5111, "all": 0.5469, "family": 0.7999, "min_class_preds": 91, "max_class_preds": 236, "mins": 48.4}

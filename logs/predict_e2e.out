@@ -1,0 +1,8 @@
+data=. model=Qwen/Qwen2.5-1.5B device=cuda batch=16 out=/tmp/claude-1000/-home-goldentom-py-repos-name-that-llm/cab0046a-5dbb-4bdf-b97f-322bbabb4770/scratchpad/e2e_submission.parquet
+train 2699 test 3 classes 18
+tfidf svc done 72s
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights:  43%|████▎     | 145/338 [00:00<00:00, 1438.57it/s]Loading weights: 100%|██████████| 338/338 [00:00<00:00, 1770.23it/s]
+  llm feats 16/2699 1s
+  llm feats 816/2699 15s
+  llm feats 1616/2699 24s

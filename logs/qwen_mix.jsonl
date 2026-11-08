@@ -1,0 +1,6 @@
+{"fold": 0, "stage": "half", "step": 836, "loss": 0.9849, "acc": 0.5785, "pool_only_acc": 0.5748, "mins": 9.2, "repeat": 5, "pool_rows": 20000, "lr": 3e-05, "bs": 16, "maxlen": 384, "seed": 0, "tag": ""}
+{"fold": 0, "stage": "full", "step": 1672, "loss": 0.8491, "acc": 0.5793, "pool_only_acc": 0.5748, "mins": 18.5, "repeat": 5, "pool_rows": 20000, "lr": 3e-05, "bs": 16, "maxlen": 384, "seed": 0, "tag": ""}
+{"fold": 1, "stage": "half", "step": 836, "loss": 0.9486, "acc": 0.5812, "pool_only_acc": 0.5782, "mins": 27.9, "repeat": 5, "pool_rows": 20000, "lr": 3e-05, "bs": 16, "maxlen": 384, "seed": 0, "tag": ""}
+{"fold": 1, "stage": "full", "step": 1672, "loss": 0.8661, "acc": 0.5915, "pool_only_acc": 0.5782, "mins": 37.0, "repeat": 5, "pool_rows": 20000, "lr": 3e-05, "bs": 16, "maxlen": 384, "seed": 0, "tag": ""}
+{"fold": "all", "stage": "half", "select": 0.5845, "holdout": 0.5611, "all": 0.5798, "repeat": 5, "pool_rows": 20000, "lr": 3e-05, "bs": 16, "maxlen": 384, "seed": 0, "tag": ""}
+{"fold": "all", "stage": "full", "select": 0.591, "holdout": 0.563, "all": 0.5854, "repeat": 5, "pool_rows": 20000, "lr": 3e-05, "bs": 16, "maxlen": 384, "seed": 0, "tag": ""}

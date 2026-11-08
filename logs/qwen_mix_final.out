@@ -1,0 +1,12 @@
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights:  90%|████████▉ | 303/338 [00:00<00:00, 3026.74it/s]Loading weights: 100%|██████████| 338/338 [00:00<00:00, 3079.00it/s]
+[transformers] [1mQwen2ForSequenceClassification LOAD REPORT[0m from: Qwen/Qwen2.5-1.5B
+Key          | Status  | 
+-------------+---------+-
+score.weight | MISSING | 
+
+Notes:
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+fold 0: train rows 2699 x5 + pool 20000 = 33495, 2094 steps
+[transformers] `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+saved models/Qwen2.5-1.5B-lora-mix: 2094 steps, last-500 loss 0.7957, 23 min

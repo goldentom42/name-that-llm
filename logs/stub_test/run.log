@@ -1,0 +1,14 @@
+data=. model=stub device=cpu batch=2 out=logs/stub_test/sub.parquet
+train 2699 test 3 classes 18
+tfidf svc done 0s
+qwen LR done 0s
+pool model done 0s
+Loading weights:   0%|          | 0/138 [00:00<?, ?it/s]Loading weights: 100%|██████████| 138/138 [00:00<00:00, 1558.81it/s]
+ModernBERT-base done 3s
+Loading weights:   0%|          | 0/202 [00:00<?, ?it/s]Loading weights:  93%|█████████▎| 188/202 [00:00<00:00, 1863.59it/s]Loading weights: 100%|██████████| 202/202 [00:00<00:00, 1921.06it/s]
+deberta-v3-base done 5s
+          id                  model
+00353fb1c541        claude-sonnet-5
+005f5a9a6139          gpt-5.6-terra
+0062a53d5487 gemini-3.1-pro-preview
+kaggle lookup: ['/kaggle/input/ntl-ckpt/ModernBERT-base', '/kaggle/input/ntl-ckpt/deberta-v3-base'] qwen: stub

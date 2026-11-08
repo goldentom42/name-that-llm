@@ -1,0 +1,43 @@
+pool 212623 val 2699 (select 2159, holdout 540) weight max 17.3 ESS 100703
+tokenised 21s, mean 140 max 384
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/198 [00:00<?, ?it/s]Loading weights: 100%|██████████| 198/198 [00:00<00:00, 3826.28it/s]
+[transformers] [1mDebertaV2ForSequenceClassification LOAD REPORT[0m from: microsoft/deberta-v3-base
+Key                                     | Status     | 
+----------------------------------------+------------+-
+lm_predictions.lm_head.dense.weight     | UNEXPECTED | 
+lm_predictions.lm_head.LayerNorm.weight | UNEXPECTED | 
+mask_predictions.LayerNorm.weight       | UNEXPECTED | 
+mask_predictions.dense.bias             | UNEXPECTED | 
+lm_predictions.lm_head.dense.bias       | UNEXPECTED | 
+mask_predictions.classifier.weight      | UNEXPECTED | 
+lm_predictions.lm_head.LayerNorm.bias   | UNEXPECTED | 
+mask_predictions.classifier.bias        | UNEXPECTED | 
+lm_predictions.lm_head.bias             | UNEXPECTED | 
+mask_predictions.dense.weight           | UNEXPECTED | 
+mask_predictions.LayerNorm.bias         | UNEXPECTED | 
+classifier.bias                         | MISSING    | 
+classifier.weight                       | MISSING    | 
+pooler.dense.bias                       | MISSING    | 
+pooler.dense.weight                     | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s]Writing model shards: 100%|██████████| 1/1 [00:00<00:00,  1.31it/s]Writing model shards: 100%|██████████| 1/1 [00:00<00:00,  1.31it/s]
+{"step": 1661, "ep": 0.25, "loss": 2.1172, "select": 0.3733, "holdout": 0.3278, "all": 0.3642, "family": 0.7481, "min_class_preds": 0, "max_class_preds": 307, "mins": 4.0} *
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s]Writing model shards: 100%|██████████| 1/1 [00:01<00:00,  1.46s/it]Writing model shards: 100%|██████████| 1/1 [00:01<00:00,  1.46s/it]
+{"step": 3322, "ep": 0.5, "loss": 1.6356, "select": 0.409, "holdout": 0.3722, "all": 0.4016, "family": 0.7529, "min_class_preds": 33, "max_class_preds": 328, "mins": 8.1} *
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s]Writing model shards: 100%|██████████| 1/1 [00:01<00:00,  1.45s/it]Writing model shards: 100%|██████████| 1/1 [00:01<00:00,  1.45s/it]
+{"step": 4983, "ep": 0.75, "loss": 1.4935, "select": 0.4321, "holdout": 0.4167, "all": 0.429, "family": 0.7803, "min_class_preds": 26, "max_class_preds": 377, "mins": 12.2} *
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s]Writing model shards: 100%|██████████| 1/1 [00:01<00:00,  1.45s/it]Writing model shards: 100%|██████████| 1/1 [00:01<00:00,  1.45s/it]
+{"step": 6644, "ep": 1.0, "loss": 1.4118, "select": 0.4632, "holdout": 0.4296, "all": 0.4565, "family": 0.7873, "min_class_preds": 39, "max_class_preds": 389, "mins": 16.3} *
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s]Writing model shards: 100%|██████████| 1/1 [00:01<00:00,  1.44s/it]Writing model shards: 100%|██████████| 1/1 [00:01<00:00,  1.44s/it]
+{"step": 8305, "ep": 1.25, "loss": 1.2133, "select": 0.5007, "holdout": 0.4833, "all": 0.4972, "family": 0.8036, "min_class_preds": 31, "max_class_preds": 261, "mins": 20.5} *
+{"step": 9966, "ep": 1.5, "loss": 1.1764, "select": 0.4789, "holdout": 0.4685, "all": 0.4768, "family": 0.7921, "min_class_preds": 62, "max_class_preds": 381, "mins": 24.6}
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s]Writing model shards: 100%|██████████| 1/1 [00:01<00:00,  1.38s/it]Writing model shards: 100%|██████████| 1/1 [00:01<00:00,  1.38s/it]
+{"step": 11627, "ep": 1.75, "loss": 1.1244, "select": 0.5044, "holdout": 0.4963, "all": 0.5028, "family": 0.7914, "min_class_preds": 51, "max_class_preds": 258, "mins": 28.7} *
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s]Writing model shards: 100%|██████████| 1/1 [00:01<00:00,  1.44s/it]Writing model shards: 100%|██████████| 1/1 [00:01<00:00,  1.44s/it]
+{"step": 13288, "ep": 2.0, "loss": 1.1346, "select": 0.5137, "holdout": 0.5, "all": 0.5109, "family": 0.7981, "min_class_preds": 76, "max_class_preds": 272, "mins": 32.8} *
+{"step": 13290, "ep": 2.0, "loss": 1.2333, "select": 0.5137, "holdout": 0.5, "all": 0.5109, "family": 0.7981, "min_class_preds": 76, "max_class_preds": 272, "mins": 32.9}
+done, best select 0.5137, 33 min
