@@ -4,8 +4,7 @@ Code for the Kaggle code competition **Name That LLM**: given a passage, say whi
 (5 Claude, 4 Gemini, 5 GPT, 2 GLM, Kimi, Qwen). The metric is balanced accuracy (mean per-class recall).
 Inference runs in an offline Kaggle notebook (T4, 9 h limit) and writes `submission.parquet` (`id`, `model`).
 
-**Current best: 0.567 public leaderboard** with `src/latest_predict_0567.py`. `src/latest_predict.py` is the
-version under test (mixed ModernBERT, see the history table).
+**Current best: 0.567 public leaderboard** with `src/latest_predict_0567.py` (simplest of the two 0.567 versions).
 
 ## Leaderboard history
 
@@ -17,7 +16,7 @@ version under test (mixed ModernBERT, see the history table).
 | (not kept as a file) | + Qwen2.5-1.5B LoRA classifier trained on the pool | 62.1% / 58.0% | 0.547 |
 | `src/latest_predict_grouped_poolqwen.py` | + gated prompt-group assignment | grouped: 76.5% / 74.1% | 0.547 (gate stayed off) |
 | **`src/latest_predict_0567.py`** | Qwen LoRA continued on pool + all of train.csv | 62.9% / 59.1% (2-fold OOF) | **0.567** |
-| `src/latest_predict.py` | ModernBERT also continued on pool + train.csv, weights re-searched | 63.0% / 60.0% (2-fold OOF) | pending |
+| `src/latest_predict_mixmb.py` | ModernBERT also continued on pool + train.csv, weights re-searched | 63.0% / 60.0% (2-fold OOF) | 0.567 (no change) |
 
 Identical resubmissions move the public LB by up to about +/-0.009, so a single gain smaller than about
 0.01 is not evidence.
@@ -101,7 +100,8 @@ What did not work:
   alone improves (54.8% -> 56.2%, holdout 50.4% -> 53.2%), DeBERTa does not (51.1% -> 50.7%). In the blend the
   mixed ModernBERT adds nothing with the current weights (62.4% vs 62.9%) and +0.1 with re-searched weights: it
   agrees more with the mixed Qwen (62.6% vs 60.3%), so it brings less diversity. Submitted once to check whether
-  in-domain gains again transfer to the leaderboard better than local numbers suggest.
+  in-domain gains again transfer to the leaderboard better than local numbers suggest: 0.567, unchanged, so the
+  local estimate was right this time (`src/latest_predict_mixmb.py`).
 - DeBERTa-v3-base fine-tuned on train.csv only: 21.3%.
 
 Practical notes:
