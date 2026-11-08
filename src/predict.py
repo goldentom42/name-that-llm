@@ -1,16 +1,18 @@
 """Name That LLM: fit the best blend on train and write submission.parquet.
 
 Runs unchanged locally (Mac/MPS) and in an offline Kaggle notebook (CUDA or CPU).
-Blend = 0.2 * SGD log-loss on hashed n-grams, trained on the external open pool
-      + 0.3 * ModernBERT-base fine-tuned on the pool (softened at temperature 3)
-      + 0.1 * DeBERTa-v3-base fine-tuned on the pool (temperature 5)
-      + 0.3 * Qwen2.5-1.5B LoRA classifier trained on the pool, then continued on all of train.csv
-              (x5) mixed with 20k pool rows (src/qwen_mix_folds.py --final; temperature 2)
+Blend = 0.1 * SGD log-loss on hashed n-grams, trained on the external open pool
+      + 0.1 * ModernBERT-base fine-tuned on the pool, then continued on all of train.csv (x5) mixed
+              with 20k pool rows (src/encoder_mix_folds.py --final; temperature 5)
+      + 0.2 * DeBERTa-v3-base fine-tuned on the pool (temperature 5)
+      + 0.5 * Qwen2.5-1.5B LoRA classifier trained on the pool, then continued on all of train.csv
+              (x5) mixed with 20k pool rows (src/qwen_mix_folds.py --final; temperature 5)
       + 0.1 * (0.7 * TF-IDF/style LinearSVC (softmax of scores*3)
              + 0.3 * LogisticRegression on Qwen2.5-1.5B features
                      (masked mean of hidden states at layers 4 and 20 + token log-prob stats)).
-Weights come from src/blend_pool.py on the 2-fold out-of-fold predictions of that recipe
-(62.9% on train.csv, 59.1% holdout; with the pool-only Qwen: 62.1% / 58.0%, 0.547 on the leaderboard).
+Weights come from src/blend_pool.py on the 2-fold out-of-fold predictions of both mixed models
+(63.0% on train.csv, 60.0% holdout; the 0.567 version, src/latest_predict_0567.py, with the
+pool-only ModernBERT: 62.9% / 59.1%). A leaderboard check of whether the mixed ModernBERT transfers.
 Then prompt groups: test texts are clustered by topic and, if they look grouped like train.csv
 (one passage per model per prompt), each model is given at most once per cluster
 (find_groups / assign_in_groups; on train.csv 77.3% / 77.2% holdout instead of 62.9% / 59.1%).
@@ -19,7 +21,7 @@ come from the same hardware/precision.
 
 Kaggle: add as inputs the competition data, the Qwen2.5 1.5B (base, transformers) model,
 the crtproduction/name-that-llm-open-pool dataset, and a dataset holding the two checkpoint
-folders from models/ under their own names (ModernBERT-base/, deberta-v3-base/), and a dataset
+folders from models/ under their own names (ModernBERT-base-mix/, deberta-v3-base/), and a dataset
 holding the LoRA adapter folders (ogrellier/ntl-qwen-lora: Qwen2.5-1.5B-lora-full/, Qwen2.5-1.5B-lora-mix/).
 Env overrides: NTL_DATA_DIR, NTL_POOL, NTL_MODEL_DIR, NTL_TF_DIR, NTL_OUT, NTL_DEVICE, NTL_BATCH.
 """
@@ -39,9 +41,9 @@ from transformers import AutoModelForCausalLM, AutoModelForSequenceClassificatio
 
 ON_KAGGLE = os.path.isdir('/kaggle/input')
 LAYERS, W_LLM, LR_C, SVC_C, SVC_TEMP, STYLE_W = (4, 20), 0.3, 0.003, 0.5, 3, 0.3
-W_OLD, W_POOL, POOL_ALPHA = 0.1, 0.2, 1e-6
-FINE_TUNED = [('ModernBERT-base', 0.3, 3.0), ('deberta-v3-base', 0.1, 5.0)]  # name, weight, temperature
-LORA = [('Qwen2.5-1.5B-lora-mix', 0.3, 2.0)]  # LoRA adapter on the Qwen base: name, weight, temperature
+W_OLD, W_POOL, POOL_ALPHA = 0.1, 0.1, 1e-6
+FINE_TUNED = [('ModernBERT-base-mix', 0.1, 5.0), ('deberta-v3-base', 0.2, 5.0)]  # name, weight, temperature
+LORA = [('Qwen2.5-1.5B-lora-mix', 0.5, 5.0)]  # LoRA adapter on the Qwen base: name, weight, temperature
 TF_MAXLEN, TF_BATCH = 384, 32
 # Prompt groups (src/group_sim.py): cluster test texts by topic, then give each model at most once per cluster.
 N_MODELS, GROUP_DIST, GROUP_GATE, MIN_GROUP = 18, 0.95, 0.5, 5

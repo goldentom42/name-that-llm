@@ -4,7 +4,8 @@ Code for the Kaggle code competition **Name That LLM**: given a passage, say whi
 (5 Claude, 4 Gemini, 5 GPT, 2 GLM, Kimi, Qwen). The metric is balanced accuracy (mean per-class recall).
 Inference runs in an offline Kaggle notebook (T4, 9 h limit) and writes `submission.parquet` (`id`, `model`).
 
-**Current best: 0.567 public leaderboard** with `src/latest_predict.py`.
+**Current best: 0.567 public leaderboard** with `src/latest_predict_0567.py`. `src/latest_predict.py` is the
+version under test (mixed ModernBERT, see the history table).
 
 ## Leaderboard history
 
@@ -15,7 +16,8 @@ Inference runs in an offline Kaggle notebook (T4, 9 h limit) and writes `submiss
 | `src/latest_predict_0541.py` | + ModernBERT-base and DeBERTa-v3-base fine-tuned on the pool | 59.9% / 55.6% | 0.541 |
 | (not kept as a file) | + Qwen2.5-1.5B LoRA classifier trained on the pool | 62.1% / 58.0% | 0.547 |
 | `src/latest_predict_grouped_poolqwen.py` | + gated prompt-group assignment | grouped: 76.5% / 74.1% | 0.547 (gate stayed off) |
-| **`src/latest_predict.py`** | Qwen LoRA continued on pool + all of train.csv | 62.9% / 59.1% (2-fold OOF) | **0.567** |
+| **`src/latest_predict_0567.py`** | Qwen LoRA continued on pool + all of train.csv | 62.9% / 59.1% (2-fold OOF) | **0.567** |
+| `src/latest_predict.py` | ModernBERT also continued on pool + train.csv, weights re-searched | 63.0% / 60.0% (2-fold OOF) | pending |
 
 Identical resubmissions move the public LB by up to about +/-0.009, so a single gain smaller than about
 0.01 is not evidence.
@@ -39,7 +41,7 @@ Identical resubmissions move the public LB by up to about +/-0.009, so a single 
 - Anything trained on train.csv itself is validated out-of-fold with `GroupKFold` by `prompt_id`. Every prompt
   has one passage per model, so these folds are also perfectly class-balanced.
 
-## Pipeline (`src/latest_predict.py`)
+## Pipeline (`src/latest_predict_0567.py`, the 0.567 submission)
 
 All components output 18-class probabilities; the blend is a weighted sum (weights and temperatures from
 `src/blend_pool.py`, chosen on the selection prompts):
@@ -87,8 +89,19 @@ What did not work:
 - **Prompt-group assignment**: +14 points when the test is grouped like train.csv, but the hidden test has only
   a few passages per prompt, where forcing it costs 2-11 points. The gate kept it off (0.547 unchanged).
 - **Fine-tuning ModernBERT/DeBERTa on train.csv alone after pool training** (5-fold, lr 1e-5 to 4e-5): no gain
-  (best 55.8% vs 54.8%, holdout lower). Mixing train.csv into pool training, as for Qwen, has not been tried.
+  (best 55.8% vs 54.8%, holdout lower). Mixing it into pool training instead: see below.
 - **Choosing blend weights for accuracy after grouping**: higher select score, lower holdout (overfitting).
+- **Marginal balancing** (`src/balance_sim.py`): soft prior correction or equal counts per class moves the blend by
+  +/-0.4 points only, and loses 2-10 points when class shares are skewed. It helps single biased models (the pool
+  linear model never predicts some classes: +2.2) but the blend already evens most of that out.
+- **gemini-3.7-flash vs gemini-3.8-flash**: every model is near chance on this pair (pairwise 50-60%), so the blend
+  predicts 3.7-flash for only 27 of 150 passages. The pool's 10,838 removed "route unverified" 3.7-flash rows
+  carry no 3.7 signal (AUC about 0.5 on train.csv), and a prior boost or equal 3.7/3.8 counts gain at most +0.3.
+- **Mixing train.csv into ModernBERT/DeBERTa** (`src/encoder_mix_folds.py`, 2-fold, lr 1e-5 / 2e-5): ModernBERT
+  alone improves (54.8% -> 56.2%, holdout 50.4% -> 53.2%), DeBERTa does not (51.1% -> 50.7%). In the blend the
+  mixed ModernBERT adds nothing with the current weights (62.4% vs 62.9%) and +0.1 with re-searched weights: it
+  agrees more with the mixed Qwen (62.6% vs 60.3%), so it brings less diversity. Submitted once to check whether
+  in-domain gains again transfer to the leaderboard better than local numbers suggest.
 - DeBERTa-v3-base fine-tuned on train.csv only: 21.3%.
 
 Practical notes:
@@ -104,9 +117,9 @@ Practical notes:
 ## Kaggle setup
 
 Notebook inputs: the competition data, the Qwen2.5 1.5B base model (`qwen-lm/qwen2.5/transformers/1.5b`),
-`crtproduction/name-that-llm-open-pool`, `ogrellier/ntl-pool-checkpoints` (ModernBERT-base/, deberta-v3-base/)
+`crtproduction/name-that-llm-open-pool`, `ogrellier/ntl-pool-checkpoints` (ModernBERT-base/, ModernBERT-base-mix/, deberta-v3-base/)
 and `ogrellier/ntl-qwen-lora` (Qwen2.5-1.5B-lora-full/, Qwen2.5-1.5B-lora-mix/). GPU T4, internet off.
-Paste `src/latest_predict.py` as the notebook code. A run takes about 26 min.
+Paste `src/latest_predict.py` (or a kept version) as the notebook code. A run takes about 26 min.
 
 `upload/*/dataset-metadata.json` hold the metadata for those datasets
 (`kaggle datasets version -p upload/<name> --dir-mode zip`).
@@ -127,7 +140,5 @@ Data, model weights and prediction arrays are not in git (see `.gitignore`).
 
 ## Next steps
 
-1. Marginal balancing: equalise how often each model is predicted (the metric is balanced accuracy).
-2. Mix train.csv into ModernBERT/DeBERTa training, as for Qwen.
-3. A larger reader (e.g. Qwen3-8B LoRA classifier) trained with the mixing recipe; needs two T4s or 4-bit
-   weights at inference.
+1. A larger reader (e.g. Qwen3-8B LoRA classifier) trained with the mixing recipe; needs two T4s or 4-bit
+   weights at inference. A strong model that differs from the current ones is what helps the blend most.
