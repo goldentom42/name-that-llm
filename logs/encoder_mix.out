@@ -1,0 +1,44 @@
+Loading weights:   0%|          | 0/138 [00:00<?, ?it/s]Loading weights: 100%|██████████| 138/138 [00:00<00:00, 3447.48it/s]
+ModernBERT-base fold 0: train rows 1349 x5 + pool 20000 = 26745, 836 steps
+{"model": "ModernBERT-base", "fold": 0, "stage": "half", "step": 418, "loss": 0.9273, "acc": 0.5504, "pool_only_acc": 0.5393, "mins": 1.1, "repeat": 5, "pool_rows": 20000, "lr": 1e-05, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr1e-5", "final": false}
+{"model": "ModernBERT-base", "fold": 0, "stage": "full", "step": 836, "loss": 0.7916, "acc": 0.5585, "pool_only_acc": 0.5393, "mins": 2.1, "repeat": 5, "pool_rows": 20000, "lr": 1e-05, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr1e-5", "final": false}
+Loading weights:   0%|          | 0/138 [00:00<?, ?it/s]Loading weights: 100%|██████████| 138/138 [00:00<00:00, 3368.27it/s]
+ModernBERT-base fold 1: train rows 1350 x5 + pool 20000 = 26750, 836 steps
+{"model": "ModernBERT-base", "fold": 1, "stage": "half", "step": 418, "loss": 0.9362, "acc": 0.5582, "pool_only_acc": 0.5574, "mins": 3.1, "repeat": 5, "pool_rows": 20000, "lr": 1e-05, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr1e-5", "final": false}
+{"model": "ModernBERT-base", "fold": 1, "stage": "full", "step": 836, "loss": 0.7681, "acc": 0.5656, "pool_only_acc": 0.5574, "mins": 4.2, "repeat": 5, "pool_rows": 20000, "lr": 1e-05, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr1e-5", "final": false}
+{"model": "ModernBERT-base", "fold": "all", "stage": "half", "select": 0.5628, "holdout": 0.5204, "all": 0.5543, "repeat": 5, "pool_rows": 20000, "lr": 1e-05, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr1e-5", "final": false}
+{"model": "ModernBERT-base", "fold": "all", "stage": "full", "select": 0.5697, "holdout": 0.5315, "all": 0.5621, "repeat": 5, "pool_rows": 20000, "lr": 1e-05, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr1e-5", "final": false}
+pool only ModernBERT-base: select 0.5595 holdout 0.5037 all 0.5484; 4 min
+Loading weights:   0%|          | 0/138 [00:00<?, ?it/s]Loading weights: 100%|██████████| 138/138 [00:00<00:00, 3608.48it/s]
+ModernBERT-base fold 0: train rows 1349 x5 + pool 20000 = 26745, 836 steps
+{"model": "ModernBERT-base", "fold": 0, "stage": "half", "step": 418, "loss": 0.9453, "acc": 0.5296, "pool_only_acc": 0.5393, "mins": 1.1, "repeat": 5, "pool_rows": 20000, "lr": 2e-05, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr2e-5", "final": false}
+{"model": "ModernBERT-base", "fold": 0, "stage": "full", "step": 836, "loss": 0.767, "acc": 0.5519, "pool_only_acc": 0.5393, "mins": 2.1, "repeat": 5, "pool_rows": 20000, "lr": 2e-05, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr2e-5", "final": false}
+Loading weights:   0%|          | 0/138 [00:00<?, ?it/s]Loading weights: 100%|██████████| 138/138 [00:00<00:00, 3567.02it/s]
+ModernBERT-base fold 1: train rows 1350 x5 + pool 20000 = 26750, 836 steps
+{"model": "ModernBERT-base", "fold": 1, "stage": "half", "step": 418, "loss": 0.9623, "acc": 0.5367, "pool_only_acc": 0.5574, "mins": 3.1, "repeat": 5, "pool_rows": 20000, "lr": 2e-05, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr2e-5", "final": false}
+{"model": "ModernBERT-base", "fold": 1, "stage": "full", "step": 836, "loss": 0.747, "acc": 0.5671, "pool_only_acc": 0.5574, "mins": 4.2, "repeat": 5, "pool_rows": 20000, "lr": 2e-05, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr2e-5", "final": false}
+{"model": "ModernBERT-base", "fold": "all", "stage": "half", "select": 0.541, "holdout": 0.5019, "all": 0.5332, "repeat": 5, "pool_rows": 20000, "lr": 2e-05, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr2e-5", "final": false}
+{"model": "ModernBERT-base", "fold": "all", "stage": "full", "select": 0.5632, "holdout": 0.5444, "all": 0.5595, "repeat": 5, "pool_rows": 20000, "lr": 2e-05, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr2e-5", "final": false}
+pool only ModernBERT-base: select 0.5595 holdout 0.5037 all 0.5484; 4 min
+Loading weights:   0%|          | 0/202 [00:00<?, ?it/s]Loading weights: 100%|██████████| 202/202 [00:00<00:00, 2447.91it/s]
+deberta-v3-base fold 0: train rows 1349 x5 + pool 20000 = 26745, 836 steps
+{"model": "deberta-v3-base", "fold": 0, "stage": "half", "step": 418, "loss": 1.1594, "acc": 0.4985, "pool_only_acc": 0.5148, "mins": 1.1, "repeat": 5, "pool_rows": 20000, "lr": 1e-05, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr1e-5", "final": false}
+{"model": "deberta-v3-base", "fold": 0, "stage": "full", "step": 836, "loss": 1.0589, "acc": 0.5081, "pool_only_acc": 0.5148, "mins": 2.2, "repeat": 5, "pool_rows": 20000, "lr": 1e-05, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr1e-5", "final": false}
+Loading weights:   0%|          | 0/202 [00:00<?, ?it/s]Loading weights: 100%|██████████| 202/202 [00:00<00:00, 2991.79it/s]
+deberta-v3-base fold 1: train rows 1350 x5 + pool 20000 = 26750, 836 steps
+{"model": "deberta-v3-base", "fold": 1, "stage": "half", "step": 418, "loss": 1.1539, "acc": 0.4796, "pool_only_acc": 0.507, "mins": 3.2, "repeat": 5, "pool_rows": 20000, "lr": 1e-05, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr1e-5", "final": false}
+{"model": "deberta-v3-base", "fold": 1, "stage": "full", "step": 836, "loss": 1.0569, "acc": 0.5048, "pool_only_acc": 0.507, "mins": 4.3, "repeat": 5, "pool_rows": 20000, "lr": 1e-05, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr1e-5", "final": false}
+{"model": "deberta-v3-base", "fold": "all", "stage": "half", "select": 0.4887, "holdout": 0.4907, "all": 0.4891, "repeat": 5, "pool_rows": 20000, "lr": 1e-05, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr1e-5", "final": false}
+{"model": "deberta-v3-base", "fold": "all", "stage": "full", "select": 0.5035, "holdout": 0.5185, "all": 0.5065, "repeat": 5, "pool_rows": 20000, "lr": 1e-05, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr1e-5", "final": false}
+pool only deberta-v3-base: select 0.5137 holdout 0.5000 all 0.5109; 4 min
+Loading weights:   0%|          | 0/202 [00:00<?, ?it/s]Loading weights: 100%|██████████| 202/202 [00:00<00:00, 3390.61it/s]
+deberta-v3-base fold 0: train rows 1349 x5 + pool 20000 = 26745, 836 steps
+{"model": "deberta-v3-base", "fold": 0, "stage": "half", "step": 418, "loss": 1.2168, "acc": 0.4689, "pool_only_acc": 0.5148, "mins": 1.1, "repeat": 5, "pool_rows": 20000, "lr": 2e-05, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr2e-5", "final": false}
+{"model": "deberta-v3-base", "fold": 0, "stage": "full", "step": 836, "loss": 1.0584, "acc": 0.5059, "pool_only_acc": 0.5148, "mins": 2.2, "repeat": 5, "pool_rows": 20000, "lr": 2e-05, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr2e-5", "final": false}
+Loading weights:   0%|          | 0/202 [00:00<?, ?it/s]Loading weights: 100%|██████████| 202/202 [00:00<00:00, 3373.14it/s]
+deberta-v3-base fold 1: train rows 1350 x5 + pool 20000 = 26750, 836 steps
+{"model": "deberta-v3-base", "fold": 1, "stage": "half", "step": 418, "loss": 1.2203, "acc": 0.4959, "pool_only_acc": 0.507, "mins": 3.2, "repeat": 5, "pool_rows": 20000, "lr": 2e-05, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr2e-5", "final": false}
+{"model": "deberta-v3-base", "fold": 1, "stage": "full", "step": 836, "loss": 1.0609, "acc": 0.4952, "pool_only_acc": 0.507, "mins": 4.3, "repeat": 5, "pool_rows": 20000, "lr": 2e-05, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr2e-5", "final": false}
+{"model": "deberta-v3-base", "fold": "all", "stage": "half", "select": 0.4836, "holdout": 0.4778, "all": 0.4824, "repeat": 5, "pool_rows": 20000, "lr": 2e-05, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr2e-5", "final": false}
+{"model": "deberta-v3-base", "fold": "all", "stage": "full", "select": 0.5002, "holdout": 0.5019, "all": 0.5006, "repeat": 5, "pool_rows": 20000, "lr": 2e-05, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr2e-5", "final": false}
+pool only deberta-v3-base: select 0.5137 holdout 0.5000 all 0.5109; 4 min
