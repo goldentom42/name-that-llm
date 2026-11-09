@@ -1,13 +1,15 @@
 """Does in-domain data help the Qwen LoRA classifier? 2-fold test on train.csv, grouped by prompt.
 
-For each fold: continue training the pool-trained adapter (models/Qwen2.5-1.5B-lora-full) on
+For each fold: continue training the pool-trained adapter (--adapter, default models/Qwen2.5-1.5B-lora-full) on
 the other fold's train.csv rows (repeated --repeat times) mixed with --pool_rows fresh pool rows,
 then predict the held fold. Together the folds give out-of-fold predictions for every train.csv
-row, comparable with val_Qwen2.5-1.5B-lora-full.npy (pool only). Evaluated at 50% and 100% of
-the schedule. Outputs oof_qwen_mix<tag>_half.npy / _full.npy and logs/qwen_mix.jsonl.
-With --final: one run on all train.csv rows (same recipe), adapter saved to models/Qwen2.5-1.5B-lora-mix<tag>/.
+row, comparable with val_<adapter name>.npy (pool only). Evaluated at 50% and 100% of
+the schedule. Outputs oof_qwen_mix<tag>_half.npy / _full.npy (oof_mix_<base name><tag>_* for another
+--base) and logs/qwen_mix.jsonl.
+With --final: one run on all train.csv rows (same recipe), adapter saved to models/<base name>-lora-mix<tag>/.
 
     python src/qwen_mix_folds.py --repeat 5 --pool_rows 20000 --lr 3e-5
+    python src/qwen_mix_folds.py --base Qwen/Qwen3-4B-Base --adapter models/Qwen3-4B-Base-lora-full
 """
 import argparse, json, os, sys, time
 import numpy as np, pandas as pd, torch
@@ -18,10 +20,10 @@ from transformers import AutoModelForSequenceClassification, AutoTokenizer, get_
 sys.path.insert(0, os.path.dirname(__file__))
 from train_pool import bucketed_batches, sample_weights, split_prompts
 
-BASE, ADAPTER = 'Qwen/Qwen2.5-1.5B', 'models/Qwen2.5-1.5B-lora-full'
+DEFAULT_BASE = 'Qwen/Qwen2.5-1.5B'
 
 
-def load(labels):
+def load(labels, BASE, ADAPTER):
     tok = AutoTokenizer.from_pretrained(BASE)
     if tok.pad_token is None: tok.pad_token = tok.eos_token
     tok.padding_side = 'right'
@@ -38,6 +40,8 @@ def load(labels):
 
 def main():
     ap = argparse.ArgumentParser()
+    ap.add_argument('--base', default=DEFAULT_BASE)
+    ap.add_argument('--adapter', default='models/Qwen2.5-1.5B-lora-full', help='pool-trained LoRA adapter to continue')
     ap.add_argument('--repeat', type=int, default=5, help='times each in-fold train.csv row is seen')
     ap.add_argument('--pool_rows', type=int, default=20000)
     ap.add_argument('--lr', type=float, default=3e-5)
@@ -54,14 +58,16 @@ def main():
     # A fresh random sample (every pool row was already seen once in the first epoch).
     pool = pool.sample(a.pool_rows, random_state=a.seed + 1).reset_index(drop=True)
     y_p = pool.model.map(l2i).values; w_p = sample_weights(pool, y_p, len(labels), 5.0)
-    base = np.load('val_Qwen2.5-1.5B-lora-full.npy')
+    base_name = a.base.rstrip('/').split('/')[-1]
+    oof_prefix = 'oof_qwen_mix' if a.base == DEFAULT_BASE else f'oof_mix_{base_name}'  # keep the 1.5B file names
+    base = np.load(f"val_{os.path.basename(a.adapter.rstrip('/'))}.npy")
     oof = {'half': np.zeros((len(t), len(labels)), np.float32), 'full': np.zeros((len(t), len(labels)), np.float32)}
     log = open('logs/qwen_mix.jsonl', 'a'); T = time.time()
 
     splits = [(np.arange(len(t)), np.array([], int))] if a.final else list(GroupKFold(2).split(t, y_t, t.prompt_id))
     for f, (tr, te) in enumerate(splits):
         torch.manual_seed(a.seed); rng = np.random.RandomState(a.seed + f)
-        tok, model = load(labels)
+        tok, model = load(labels, a.base, a.adapter)
         enc = lambda s: tok(list(s), truncation=True, max_length=a.maxlen)['input_ids']
         ids_t, ids_p = enc(t.text), enc(pool.text)
         # Mixed training set: pool rows (class-balanced weights, mean 1) + in-fold train rows x repeat (weight 1).
@@ -100,12 +106,12 @@ def main():
                          pool_only_acc=round(ok0.mean(), 4), mins=round((time.time() - T) / 60, 1), **vars(a))
                 print(json.dumps(r), flush=True); log.write(json.dumps(r) + '\n'); log.flush(); os.fsync(log.fileno()); run_loss = []
         if a.final:
-            out = f'models/Qwen2.5-1.5B-lora-mix{a.tag}'; model.save_pretrained(out)
+            out = f'models/{base_name}-lora-mix{a.tag}'; model.save_pretrained(out)
             print(f'saved {out}: {n} steps, last-500 loss {np.mean(run_loss[-500:]):.4f}, {(time.time() - T) / 60:.0f} min', flush=True); return
         del model, opt; torch.cuda.empty_cache()
 
     for stage, P in oof.items():
-        np.save(f'oof_qwen_mix{a.tag}_{stage}.npy', P); ok = P.argmax(1) == y_t
+        np.save(f'{oof_prefix}{a.tag}_{stage}.npy', P); ok = P.argmax(1) == y_t
         r = dict(fold='all', stage=stage, select=round(ok[~held].mean(), 4), holdout=round(ok[held].mean(), 4), all=round(ok.mean(), 4), **vars(a))
         print(json.dumps(r), flush=True); log.write(json.dumps(r) + '\n')
     ok0 = base.argmax(1) == y_t

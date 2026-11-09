@@ -6,6 +6,9 @@ the 30-prompt holdout is report-only (split_prompts in train_pool.py). Outputs:
     models/<name>/           best LoRA adapter + trained score head (peft save_pretrained)
     val_<name>.npy           softmax probs of the best evaluation, aligned to train.csv rows
     logs/<name>.jsonl        one record per evaluation
+With --ckpt_every N, the trainable weights, optimizer, scheduler and RNG states are saved to
+models/<name>-resume.pt every N steps; rerun the same command with --resume to continue after a crash
+(batches are regenerated from the seed and the done ones skipped). The file is deleted when the run ends.
 """
 import argparse, json, os, sys, time
 import numpy as np, pandas as pd, torch
@@ -48,6 +51,8 @@ def main():
     ap.add_argument('--evals', type=int, default=4)
     ap.add_argument('--seed', type=int, default=0)
     ap.add_argument('--tag', default='')
+    ap.add_argument('--ckpt_every', type=int, default=0, help='save a resume checkpoint every N steps (0 = never)')
+    ap.add_argument('--resume', action='store_true', help='continue from models/<name>-resume.pt if it exists')
     a = ap.parse_args()
 
     name = a.base.split('/')[-1] + f'-lora{a.tag}'
@@ -95,12 +100,31 @@ def main():
     step(np.argsort(len_pool)[-a.bs:]); opt.zero_grad(set_to_none=True)
     print(f'longest batch ok, peak {torch.cuda.max_memory_allocated() / 2**30:.1f} GiB', flush=True)
 
-    best, log, n, run_loss, T = -1.0, open(f'logs/{name}.jsonl', 'a'), 0, [], time.time()
+    trainable = {k: p for k, p in model.named_parameters() if p.requires_grad}
+    resume_path, start, best = f'models/{name}-resume.pt', 0, -1.0
+    if a.resume and os.path.exists(resume_path):
+        st = torch.load(resume_path, map_location='cuda', weights_only=False)
+        for k, v in st['params'].items(): trainable[k].data.copy_(v)
+        opt.load_state_dict(st['opt']); sch.load_state_dict(st['sch'])
+        torch.set_rng_state(st['cpu_rng'].cpu()); torch.cuda.set_rng_state(st['cuda_rng'].cpu())
+        start, best = st['n'], st['best']
+        print(f'resumed from step {start} of {steps}, best select so far {best:.4f}', flush=True)
+    elif a.resume:
+        print(f'--resume: no {resume_path}, starting from scratch', flush=True)
+
+    def save_resume(n):
+        st = dict(params={k: p.detach().cpu() for k, p in trainable.items()}, opt=opt.state_dict(), sch=sch.state_dict(),
+                  cpu_rng=torch.get_rng_state(), cuda_rng=torch.cuda.get_rng_state(), n=n, best=best)
+        torch.save(st, resume_path + '.tmp'); os.replace(resume_path + '.tmp', resume_path)  # never a half-written file
+
+    log, n, run_loss, T = open(f'logs/{name}.jsonl', 'a'), 0, [], time.time()
     eval_every = max(1, steps_ep // a.evals)
     for ep in range(a.epochs):
-        for idx in bucketed_batches(len_pool, a.bs, rng):
-            run_loss.append(step(idx)); n += 1
-            if n == 200: print(f'speed {200 * a.bs / (time.time() - T):.1f} rows/s -> {len(pool) * a.epochs / (200 * a.bs / (time.time() - T)) / 60:.0f} min for this run', flush=True)
+        for idx in bucketed_batches(len_pool, a.bs, rng):  # same seed -> same batches, so a resumed run skips the done ones
+            n += 1
+            if n <= start: continue
+            run_loss.append(step(idx))
+            if n == start + 200: print(f'speed {200 * a.bs / (time.time() - T):.1f} rows/s -> {(steps - start) * a.bs / (200 * a.bs / (time.time() - T)) / 60:.0f} min for this run', flush=True)
             if n % eval_every == 0 or n == steps:
                 P = evaluate(); ok = P.argmax(1) == y_val; pred = P.argmax(1)
                 r = dict(step=n, ep=round(n / steps_ep, 2), loss=round(float(np.mean(run_loss)), 4),
@@ -112,6 +136,9 @@ def main():
                     best = r['select']; model.save_pretrained(out_dir); tok.save_pretrained(out_dir); np.save(f'val_{name}.npy', P)
                 print(json.dumps(r) + (' *' if saved else ''), flush=True); log.write(json.dumps(r) + '\n'); log.flush(); os.fsync(log.fileno())
                 run_loss = []
+            if a.ckpt_every and n % a.ckpt_every == 0 and n < steps:
+                save_resume(n); print(f'resume checkpoint at step {n}, {(time.time() - T) / 60:.0f} min', flush=True)
+    if os.path.exists(resume_path): os.remove(resume_path)
     print(f'done, best select {best:.4f}, {(time.time() - T) / 60:.0f} min', flush=True)
 
 
