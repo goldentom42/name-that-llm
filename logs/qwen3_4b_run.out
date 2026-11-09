@@ -44,3 +44,12 @@ resume checkpoint at step 11000, 287 min
 resume checkpoint at step 11500, 300 min
 {"step": 11627, "ep": 0.87, "loss": 1.0685, "select": 0.5785, "holdout": 0.5759, "all": 0.578, "min_class_preds": 71, "max_class_preds": 286, "mins": 304.3} *
 resume checkpoint at step 12000, 314 min
+resume checkpoint at step 12500, 327 min
+resume checkpoint at step 13000, 339 min
+{"step": 13288, "ep": 1.0, "loss": 1.0103, "select": 0.5896, "holdout": 0.5852, "all": 0.5887, "min_class_preds": 79, "max_class_preds": 241, "mins": 347.9} *
+{"step": 13289, "ep": 1.0, "loss": 0.493, "select": 0.5896, "holdout": 0.5852, "all": 0.5887, "min_class_preds": 79, "max_class_preds": 241, "mins": 349.1}
+done, best select 0.5896, 349 min
+== step 1 (pool LoRA, full pool): done 2026-11-09 12:46:47
+== step 2 (2-fold mixing test): already done, skipping
+== step 3 (final mixing run): already done, skipping
+== all done 2026-11-09 12:46:47

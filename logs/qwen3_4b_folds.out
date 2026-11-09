@@ -1,0 +1,62 @@
+== 5-fold mixing: start 2026-11-09 12:47:05
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  76%|███████▌  | 301/398 [00:00<00:00, 3004.78it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 2986.94it/s]
+[transformers] [1mQwen3ForSequenceClassification LOAD REPORT[0m from: Qwen/Qwen3-4B-Base
+Key          | Status  | 
+-------------+---------+-
+score.weight | MISSING | 
+
+Notes:
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+fold 0: train rows 2159 x5 + pool 20000 = 30795, 1925 steps
+[transformers] `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+{"fold": 0, "stage": "half", "step": 962, "loss": 0.8524, "acc": 0.5833, "pool_only_acc": 0.5722, "mins": 24.8, "base": "Qwen/Qwen3-4B-Base", "adapter": "models/Qwen3-4B-Base-lora-full", "repeat": 5, "pool_rows": 20000, "lr": 3e-05, "bs": 16, "maxlen": 384, "seed": 0, "tag": "-5fold", "final": false, "folds": 5, "save_folds": true, "device": "cuda", "max_prompts": 0}
+{"fold": 0, "stage": "full", "step": 1925, "loss": 0.7056, "acc": 0.5907, "pool_only_acc": 0.5722, "mins": 49.5, "base": "Qwen/Qwen3-4B-Base", "adapter": "models/Qwen3-4B-Base-lora-full", "repeat": 5, "pool_rows": 20000, "lr": 3e-05, "bs": 16, "maxlen": 384, "seed": 0, "tag": "-5fold", "final": false, "folds": 5, "save_folds": true, "device": "cuda", "max_prompts": 0}
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  72%|███████▏  | 287/398 [00:00<00:00, 2869.54it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 2780.41it/s]
+[transformers] [1mQwen3ForSequenceClassification LOAD REPORT[0m from: Qwen/Qwen3-4B-Base
+Key          | Status  | 
+-------------+---------+-
+score.weight | MISSING | 
+
+Notes:
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+fold 1: train rows 2159 x5 + pool 20000 = 30795, 1925 steps
+{"fold": 1, "stage": "half", "step": 962, "loss": 0.8483, "acc": 0.5685, "pool_only_acc": 0.5796, "mins": 74.3, "base": "Qwen/Qwen3-4B-Base", "adapter": "models/Qwen3-4B-Base-lora-full", "repeat": 5, "pool_rows": 20000, "lr": 3e-05, "bs": 16, "maxlen": 384, "seed": 0, "tag": "-5fold", "final": false, "folds": 5, "save_folds": true, "device": "cuda", "max_prompts": 0}
+{"fold": 1, "stage": "full", "step": 1925, "loss": 0.7063, "acc": 0.5796, "pool_only_acc": 0.5796, "mins": 98.9, "base": "Qwen/Qwen3-4B-Base", "adapter": "models/Qwen3-4B-Base-lora-full", "repeat": 5, "pool_rows": 20000, "lr": 3e-05, "bs": 16, "maxlen": 384, "seed": 0, "tag": "-5fold", "final": false, "folds": 5, "save_folds": true, "device": "cuda", "max_prompts": 0}
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  74%|███████▍  | 296/398 [00:00<00:00, 2954.27it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 2870.29it/s]
+[transformers] [1mQwen3ForSequenceClassification LOAD REPORT[0m from: Qwen/Qwen3-4B-Base
+Key          | Status  | 
+-------------+---------+-
+score.weight | MISSING | 
+
+Notes:
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+fold 2: train rows 2159 x5 + pool 20000 = 30795, 1925 steps
+{"fold": 2, "stage": "half", "step": 962, "loss": 0.8466, "acc": 0.6074, "pool_only_acc": 0.6056, "mins": 123.8, "base": "Qwen/Qwen3-4B-Base", "adapter": "models/Qwen3-4B-Base-lora-full", "repeat": 5, "pool_rows": 20000, "lr": 3e-05, "bs": 16, "maxlen": 384, "seed": 0, "tag": "-5fold", "final": false, "folds": 5, "save_folds": true, "device": "cuda", "max_prompts": 0}
+{"fold": 2, "stage": "full", "step": 1925, "loss": 0.7155, "acc": 0.6278, "pool_only_acc": 0.6056, "mins": 148.4, "base": "Qwen/Qwen3-4B-Base", "adapter": "models/Qwen3-4B-Base-lora-full", "repeat": 5, "pool_rows": 20000, "lr": 3e-05, "bs": 16, "maxlen": 384, "seed": 0, "tag": "-5fold", "final": false, "folds": 5, "save_folds": true, "device": "cuda", "max_prompts": 0}
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  71%|███████   | 282/398 [00:00<00:00, 2809.47it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 2678.30it/s]
+[transformers] [1mQwen3ForSequenceClassification LOAD REPORT[0m from: Qwen/Qwen3-4B-Base
+Key          | Status  | 
+-------------+---------+-
+score.weight | MISSING | 
+
+Notes:
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+fold 3: train rows 2159 x5 + pool 20000 = 30795, 1925 steps
+{"fold": 3, "stage": "half", "step": 962, "loss": 0.8581, "acc": 0.5944, "pool_only_acc": 0.5778, "mins": 173.4, "base": "Qwen/Qwen3-4B-Base", "adapter": "models/Qwen3-4B-Base-lora-full", "repeat": 5, "pool_rows": 20000, "lr": 3e-05, "bs": 16, "maxlen": 384, "seed": 0, "tag": "-5fold", "final": false, "folds": 5, "save_folds": true, "device": "cuda", "max_prompts": 0}
+{"fold": 3, "stage": "full", "step": 1925, "loss": 0.6965, "acc": 0.5796, "pool_only_acc": 0.5778, "mins": 198.1, "base": "Qwen/Qwen3-4B-Base", "adapter": "models/Qwen3-4B-Base-lora-full", "repeat": 5, "pool_rows": 20000, "lr": 3e-05, "bs": 16, "maxlen": 384, "seed": 0, "tag": "-5fold", "final": false, "folds": 5, "save_folds": true, "device": "cuda", "max_prompts": 0}
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  69%|██████▊   | 273/398 [00:00<00:00, 2722.02it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 2601.46it/s]
+[transformers] [1mQwen3ForSequenceClassification LOAD REPORT[0m from: Qwen/Qwen3-4B-Base
+Key          | Status  | 
+-------------+---------+-
+score.weight | MISSING | 
+
+Notes:
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+fold 4: train rows 2160 x5 + pool 20000 = 30800, 1925 steps
+{"fold": 4, "stage": "half", "step": 962, "loss": 0.8535, "acc": 0.6215, "pool_only_acc": 0.6085, "mins": 222.8, "base": "Qwen/Qwen3-4B-Base", "adapter": "models/Qwen3-4B-Base-lora-full", "repeat": 5, "pool_rows": 20000, "lr": 3e-05, "bs": 16, "maxlen": 384, "seed": 0, "tag": "-5fold", "final": false, "folds": 5, "save_folds": true, "device": "cuda", "max_prompts": 0}
+{"fold": 4, "stage": "full", "step": 1925, "loss": 0.7038, "acc": 0.6401, "pool_only_acc": 0.6085, "mins": 247.8, "base": "Qwen/Qwen3-4B-Base", "adapter": "models/Qwen3-4B-Base-lora-full", "repeat": 5, "pool_rows": 20000, "lr": 3e-05, "bs": 16, "maxlen": 384, "seed": 0, "tag": "-5fold", "final": false, "folds": 5, "save_folds": true, "device": "cuda", "max_prompts": 0}
+{"fold": "all", "stage": "half", "select": 0.6012, "holdout": 0.5704, "all": 0.595, "base": "Qwen/Qwen3-4B-Base", "adapter": "models/Qwen3-4B-Base-lora-full", "repeat": 5, "pool_rows": 20000, "lr": 3e-05, "bs": 16, "maxlen": 384, "seed": 0, "tag": "-5fold", "final": false, "folds": 5, "save_folds": true, "device": "cuda", "max_prompts": 0}
+{"fold": "all", "stage": "full", "select": 0.6058, "holdout": 0.5944, "all": 0.6036, "base": "Qwen/Qwen3-4B-Base", "adapter": "models/Qwen3-4B-Base-lora-full", "repeat": 5, "pool_rows": 20000, "lr": 3e-05, "bs": 16, "maxlen": 384, "seed": 0, "tag": "-5fold", "final": false, "folds": 5, "save_folds": true, "device": "cuda", "max_prompts": 0}
+pool only: select 0.5896 holdout 0.5852 all 0.5887; 248 min
+== 5-fold mixing: all done 2026-11-09 16:55:02
