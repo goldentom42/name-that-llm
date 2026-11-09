@@ -7,6 +7,8 @@ row, comparable with val_<adapter name>.npy (pool only). Evaluated at 50% and 10
 the schedule. Outputs oof_qwen_mix<tag>_half.npy / _full.npy (oof_mix_<base name><tag>_* for another
 --base) and logs/qwen_mix.jsonl.
 With --final: one run on all train.csv rows (same recipe), adapter saved to models/<base name>-lora-mix<tag>/.
+--folds sets the number of folds (default 2; 5 is the standard for scoring). With --save_folds each fold's adapter and
+held-out predictions go to models/<base name>-lora-mix<tag>-fold<k>/; a rerun skips the folds already finished.
 
     python src/qwen_mix_folds.py --repeat 5 --pool_rows 20000 --lr 3e-5
     python src/qwen_mix_folds.py --base Qwen/Qwen3-4B-Base --adapter models/Qwen3-4B-Base-lora-full
@@ -23,7 +25,7 @@ from train_pool import bucketed_batches, sample_weights, split_prompts
 DEFAULT_BASE = 'Qwen/Qwen2.5-1.5B'
 
 
-def load(labels, BASE, ADAPTER):
+def load(labels, BASE, ADAPTER, device):
     tok = AutoTokenizer.from_pretrained(BASE)
     if tok.pad_token is None: tok.pad_token = tok.eos_token
     tok.padding_side = 'right'
@@ -35,7 +37,7 @@ def load(labels, BASE, ADAPTER):
     m = PeftModel.from_pretrained(m, ADAPTER, is_trainable=True)
     for p in m.parameters():
         if p.requires_grad: p.data = p.data.float()
-    return tok, m.cuda()
+    return tok, m.to(device)
 
 
 def main():
@@ -50,24 +52,36 @@ def main():
     ap.add_argument('--seed', type=int, default=0)
     ap.add_argument('--tag', default='')
     ap.add_argument('--final', action='store_true', help='train once on all train.csv rows + pool, save the adapter')
+    ap.add_argument('--folds', type=int, default=2)
+    ap.add_argument('--save_folds', action='store_true', help='save each fold (adapter + predictions); a rerun skips finished folds')
+    ap.add_argument('--device', default='cuda')
+    ap.add_argument('--max_prompts', type=int, default=0, help='use only the first N prompts (smoke test)')
     a = ap.parse_args()
 
     t = pd.read_csv('train.csv'); labels = sorted(t.model.unique()); l2i = {l: i for i, l in enumerate(labels)}
-    y_t = t.model.map(l2i).values; held = split_prompts(t.prompt_id.values)
+    held = split_prompts(t.prompt_id.values); keep = np.ones(len(t), bool)
+    if a.max_prompts: keep = t.prompt_id.isin(t.prompt_id.unique()[:a.max_prompts]).values
+    t, held = t[keep].reset_index(drop=True), held[keep]
+    y_t = t.model.map(l2i).values
     pool = pd.read_parquet('data/open_pool/ntl_open_pool.parquet', columns=['text', 'model', 'match_weight'])
     # A fresh random sample (every pool row was already seen once in the first epoch).
     pool = pool.sample(a.pool_rows, random_state=a.seed + 1).reset_index(drop=True)
     y_p = pool.model.map(l2i).values; w_p = sample_weights(pool, y_p, len(labels), 5.0)
     base_name = a.base.rstrip('/').split('/')[-1]
     oof_prefix = 'oof_qwen_mix' if a.base == DEFAULT_BASE else f'oof_mix_{base_name}'  # keep the 1.5B file names
-    base = np.load(f"val_{os.path.basename(a.adapter.rstrip('/'))}.npy")
+    base = np.load(f"val_{os.path.basename(a.adapter.rstrip('/'))}.npy")[keep]
     oof = {'half': np.zeros((len(t), len(labels)), np.float32), 'full': np.zeros((len(t), len(labels)), np.float32)}
     log = open('logs/qwen_mix.jsonl', 'a'); T = time.time()
 
-    splits = [(np.arange(len(t)), np.array([], int))] if a.final else list(GroupKFold(2).split(t, y_t, t.prompt_id))
+    splits = [(np.arange(len(t)), np.array([], int))] if a.final else list(GroupKFold(a.folds).split(t, y_t, t.prompt_id))
     for f, (tr, te) in enumerate(splits):
+        fold_dir = f'models/{base_name}-lora-mix{a.tag}-fold{f}'; fold_done = f'{fold_dir}/oof.npz'
+        if a.save_folds and os.path.exists(fold_done):
+            z = np.load(fold_done); assert np.array_equal(z['te'], te), 'fold split changed'
+            for k in oof: oof[k][te] = z[k]
+            print(f'fold {f}: already finished, predictions loaded from {fold_done}', flush=True); continue
         torch.manual_seed(a.seed); rng = np.random.RandomState(a.seed + f)
-        tok, model = load(labels, a.base, a.adapter)
+        tok, model = load(labels, a.base, a.adapter, a.device)
         enc = lambda s: tok(list(s), truncation=True, max_length=a.maxlen)['input_ids']
         ids_t, ids_p = enc(t.text), enc(pool.text)
         # Mixed training set: pool rows (class-balanced weights, mean 1) + in-fold train rows x repeat (weight 1).
@@ -78,24 +92,24 @@ def main():
         opt = torch.optim.AdamW([p for p in model.parameters() if p.requires_grad], lr=a.lr, weight_decay=0.01, fused=True)
         steps = (len(ids) + a.bs - 1) // a.bs
         sch = get_cosine_schedule_with_warmup(opt, steps // 20, steps)
-        pad = lambda seqs: tok.pad({'input_ids': seqs}, return_tensors='pt').to('cuda')
+        pad = lambda seqs: tok.pad({'input_ids': seqs}, return_tensors='pt').to(a.device)
 
         @torch.no_grad()
         def predict():
             model.eval(); out = np.zeros((len(te), len(labels)), np.float32); order = np.argsort([len(ids_t[i]) for i in te])
             for s in range(0, len(order), 64):
                 j = order[s:s + 64]
-                with torch.autocast('cuda', dtype=torch.bfloat16):
+                with torch.autocast(a.device, dtype=torch.bfloat16):
                     out[j] = model(**pad([ids_t[i] for i in te[j]])).logits.float().softmax(-1).cpu().numpy()
             model.train(); return out
 
         print(f'fold {f}: train rows {len(tr)} x{a.repeat} + pool {len(pool)} = {len(ids)}, {steps} steps', flush=True)
         model.train(); n = 0; run_loss = []
         for idx in bucketed_batches(lens, a.bs, rng):
-            with torch.autocast('cuda', dtype=torch.bfloat16):
+            with torch.autocast(a.device, dtype=torch.bfloat16):
                 lg = model(**pad([ids[i] for i in idx])).logits
-            loss = (F.cross_entropy(lg.float(), torch.tensor(y[idx], device='cuda'), reduction='none')
-                    * torch.tensor(w[idx], device='cuda')).mean()
+            loss = (F.cross_entropy(lg.float(), torch.tensor(y[idx], device=a.device), reduction='none')
+                    * torch.tensor(w[idx], device=a.device)).mean()
             if not torch.isfinite(loss): raise RuntimeError('non-finite loss')
             loss.backward(); torch.nn.utils.clip_grad_norm_([p for p in model.parameters() if p.requires_grad], 1.0)
             opt.step(); sch.step(); opt.zero_grad(set_to_none=True); run_loss.append(loss.item()); n += 1
@@ -108,6 +122,9 @@ def main():
         if a.final:
             out = f'models/{base_name}-lora-mix{a.tag}'; model.save_pretrained(out)
             print(f'saved {out}: {n} steps, last-500 loss {np.mean(run_loss[-500:]):.4f}, {(time.time() - T) / 60:.0f} min', flush=True); return
+        if a.save_folds:  # the predictions file is written last: its presence means the fold is complete
+            model.save_pretrained(fold_dir)
+            np.savez(fold_done + '.tmp.npz', te=te, half=oof['half'][te], full=oof['full'][te]); os.replace(fold_done + '.tmp.npz', fold_done)
         del model, opt; torch.cuda.empty_cache()
 
     for stage, P in oof.items():

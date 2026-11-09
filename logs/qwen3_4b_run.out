@@ -1,0 +1,46 @@
+== step 1 (pool LoRA, full pool): start 2026-11-09 06:57:04
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  39%|███▉      | 156/398 [00:00<00:00, 1559.25it/s]Loading weights:  78%|███████▊  | 312/398 [00:00<00:00, 1485.58it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 1529.86it/s]
+[transformers] [1mQwen3ForSequenceClassification LOAD REPORT[0m from: Qwen/Qwen3-4B-Base
+Key          | Status  | 
+-------------+---------+-
+score.weight | MISSING | 
+
+Notes:
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+pool 212623 trainable 33.1M tokens mean 144 max 384
+[transformers] `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+longest batch ok, peak 10.6 GiB
+--resume: no models/Qwen3-4B-Base-lora-full-resume.pt, starting from scratch
+speed 10.5 rows/s -> 337 min for this run
+resume checkpoint at step 500, 13 min
+resume checkpoint at step 1000, 26 min
+resume checkpoint at step 1500, 39 min
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+{"step": 1661, "ep": 0.12, "loss": 2.2574, "select": 0.365, "holdout": 0.3519, "all": 0.3624, "min_class_preds": 0, "max_class_preds": 527, "mins": 44.3} *
+resume checkpoint at step 2000, 53 min
+resume checkpoint at step 2500, 65 min
+resume checkpoint at step 3000, 78 min
+{"step": 3322, "ep": 0.25, "loss": 1.5227, "select": 0.4525, "holdout": 0.4389, "all": 0.4498, "min_class_preds": 7, "max_class_preds": 361, "mins": 87.4} *
+resume checkpoint at step 3500, 92 min
+resume checkpoint at step 4000, 105 min
+resume checkpoint at step 4500, 117 min
+{"step": 4983, "ep": 0.37, "loss": 1.3283, "select": 0.5063, "holdout": 0.4759, "all": 0.5002, "min_class_preds": 34, "max_class_preds": 278, "mins": 130.9} *
+resume checkpoint at step 5000, 131 min
+resume checkpoint at step 5500, 144 min
+resume checkpoint at step 6000, 157 min
+resume checkpoint at step 6500, 170 min
+{"step": 6644, "ep": 0.5, "loss": 1.2158, "select": 0.5614, "holdout": 0.5296, "all": 0.555, "min_class_preds": 40, "max_class_preds": 249, "mins": 174.5} *
+resume checkpoint at step 7000, 184 min
+resume checkpoint at step 7500, 196 min
+resume checkpoint at step 8000, 209 min
+{"step": 8305, "ep": 0.62, "loss": 1.1556, "select": 0.5632, "holdout": 0.5574, "all": 0.5621, "min_class_preds": 48, "max_class_preds": 278, "mins": 217.7} *
+resume checkpoint at step 8500, 223 min
+resume checkpoint at step 9000, 235 min
+resume checkpoint at step 9500, 248 min
+{"step": 9966, "ep": 0.75, "loss": 1.1031, "select": 0.5762, "holdout": 0.5704, "all": 0.575, "min_class_preds": 28, "max_class_preds": 260, "mins": 260.9} *
+resume checkpoint at step 10000, 262 min
+resume checkpoint at step 10500, 274 min
+resume checkpoint at step 11000, 287 min
+resume checkpoint at step 11500, 300 min
+{"step": 11627, "ep": 0.87, "loss": 1.0685, "select": 0.5785, "holdout": 0.5759, "all": 0.578, "min_class_preds": 71, "max_class_preds": 286, "mins": 304.3} *
+resume checkpoint at step 12000, 314 min
