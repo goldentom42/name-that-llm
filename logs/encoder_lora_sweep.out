@@ -1,0 +1,72 @@
+== lr 5e-5 start 07:19:22
+Loading weights:   0%|          | 0/138 [00:00<?, ?it/s]Loading weights: 100%|██████████| 138/138 [00:00<00:00, 3709.68it/s]
+{"model": "ModernBERT-base", "kind": "fold", "fold": 0, "acc": 0.5259, "pool_only": 0.4889, "mins": 2.3, "mode": "oof", "folds": 5, "outer": 3, "epochs": 10, "lr": 5e-05, "r": 16, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr5e-5-ep10", "max_prompts": 0}
+Loading weights:   0%|          | 0/138 [00:00<?, ?it/s]Loading weights: 100%|██████████| 138/138 [00:00<00:00, 3610.88it/s]
+{"model": "ModernBERT-base", "kind": "fold", "fold": 1, "acc": 0.5667, "pool_only": 0.5537, "mins": 4.6, "mode": "oof", "folds": 5, "outer": 3, "epochs": 10, "lr": 5e-05, "r": 16, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr5e-5-ep10", "max_prompts": 0}
+Loading weights:   0%|          | 0/138 [00:00<?, ?it/s]Loading weights: 100%|██████████| 138/138 [00:00<00:00, 3516.19it/s]
+{"model": "ModernBERT-base", "kind": "fold", "fold": 2, "acc": 0.5778, "pool_only": 0.5741, "mins": 6.9, "mode": "oof", "folds": 5, "outer": 3, "epochs": 10, "lr": 5e-05, "r": 16, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr5e-5-ep10", "max_prompts": 0}
+Loading weights:   0%|          | 0/138 [00:00<?, ?it/s]Loading weights: 100%|██████████| 138/138 [00:00<00:00, 3707.14it/s]
+{"model": "ModernBERT-base", "kind": "fold", "fold": 3, "acc": 0.6019, "pool_only": 0.5556, "mins": 9.2, "mode": "oof", "folds": 5, "outer": 3, "epochs": 10, "lr": 5e-05, "r": 16, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr5e-5-ep10", "max_prompts": 0}
+Loading weights:   0%|          | 0/138 [00:00<?, ?it/s]Loading weights: 100%|██████████| 138/138 [00:00<00:00, 3604.99it/s]
+{"model": "ModernBERT-base", "kind": "fold", "fold": 4, "acc": 0.577, "pool_only": 0.5696, "mins": 11.6, "mode": "oof", "folds": 5, "outer": 3, "epochs": 10, "lr": 5e-05, "r": 16, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr5e-5-ep10", "max_prompts": 0}
+{"model": "ModernBERT-base", "kind": "oof", "epoch": 1, "select": 0.5651, "holdout": 0.5204, "all": 0.5561, "mode": "oof", "folds": 5, "outer": 3, "epochs": 10, "lr": 5e-05, "r": 16, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr5e-5-ep10", "max_prompts": 0}
+{"model": "ModernBERT-base", "kind": "oof", "epoch": 2, "select": 0.578, "holdout": 0.5333, "all": 0.5691, "mode": "oof", "folds": 5, "outer": 3, "epochs": 10, "lr": 5e-05, "r": 16, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr5e-5-ep10", "max_prompts": 0}
+{"model": "ModernBERT-base", "kind": "oof", "epoch": 3, "select": 0.5725, "holdout": 0.5241, "all": 0.5628, "mode": "oof", "folds": 5, "outer": 3, "epochs": 10, "lr": 5e-05, "r": 16, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr5e-5-ep10", "max_prompts": 0}
+{"model": "ModernBERT-base", "kind": "oof", "epoch": 4, "select": 0.5702, "holdout": 0.5278, "all": 0.5617, "mode": "oof", "folds": 5, "outer": 3, "epochs": 10, "lr": 5e-05, "r": 16, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr5e-5-ep10", "max_prompts": 0}
+{"model": "ModernBERT-base", "kind": "oof", "epoch": 5, "select": 0.579, "holdout": 0.5241, "all": 0.568, "mode": "oof", "folds": 5, "outer": 3, "epochs": 10, "lr": 5e-05, "r": 16, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr5e-5-ep10", "max_prompts": 0}
+{"model": "ModernBERT-base", "kind": "oof", "epoch": 6, "select": 0.5827, "holdout": 0.5352, "all": 0.5732, "mode": "oof", "folds": 5, "outer": 3, "epochs": 10, "lr": 5e-05, "r": 16, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr5e-5-ep10", "max_prompts": 0}
+{"model": "ModernBERT-base", "kind": "oof", "epoch": 7, "select": 0.5767, "holdout": 0.5333, "all": 0.568, "mode": "oof", "folds": 5, "outer": 3, "epochs": 10, "lr": 5e-05, "r": 16, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr5e-5-ep10", "max_prompts": 0}
+{"model": "ModernBERT-base", "kind": "oof", "epoch": 8, "select": 0.5808, "holdout": 0.5296, "all": 0.5706, "mode": "oof", "folds": 5, "outer": 3, "epochs": 10, "lr": 5e-05, "r": 16, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr5e-5-ep10", "max_prompts": 0}
+{"model": "ModernBERT-base", "kind": "oof", "epoch": 9, "select": 0.5776, "holdout": 0.5278, "all": 0.5676, "mode": "oof", "folds": 5, "outer": 3, "epochs": 10, "lr": 5e-05, "r": 16, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr5e-5-ep10", "max_prompts": 0}
+{"model": "ModernBERT-base", "kind": "oof", "epoch": 10, "select": 0.5776, "holdout": 0.5389, "all": 0.5698, "mode": "oof", "folds": 5, "outer": 3, "epochs": 10, "lr": 5e-05, "r": 16, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr5e-5-ep10", "max_prompts": 0}
+pool only: select 0.5595 holdout 0.5037 all 0.5484; 12 min
+done, 11.6 min
+ModernBERT-lora-5fold-lr5e-5-ep10 5-fold-oof       mean 0.5698 +/- 0.0248 | 0.526 0.567 0.578 0.602 0.577
+== lr 1e-4 start 07:31:05
+Loading weights:   0%|          | 0/138 [00:00<?, ?it/s]Loading weights: 100%|██████████| 138/138 [00:00<00:00, 3771.63it/s]
+{"model": "ModernBERT-base", "kind": "fold", "fold": 0, "acc": 0.4963, "pool_only": 0.4889, "mins": 2.3, "mode": "oof", "folds": 5, "outer": 3, "epochs": 10, "lr": 0.0001, "r": 16, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr1e-4-ep10", "max_prompts": 0}
+Loading weights:   0%|          | 0/138 [00:00<?, ?it/s]Loading weights: 100%|██████████| 138/138 [00:00<00:00, 3714.37it/s]
+{"model": "ModernBERT-base", "kind": "fold", "fold": 1, "acc": 0.5444, "pool_only": 0.5537, "mins": 4.6, "mode": "oof", "folds": 5, "outer": 3, "epochs": 10, "lr": 0.0001, "r": 16, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr1e-4-ep10", "max_prompts": 0}
+Loading weights:   0%|          | 0/138 [00:00<?, ?it/s]Loading weights: 100%|██████████| 138/138 [00:00<00:00, 3673.77it/s]
+{"model": "ModernBERT-base", "kind": "fold", "fold": 2, "acc": 0.5519, "pool_only": 0.5741, "mins": 6.9, "mode": "oof", "folds": 5, "outer": 3, "epochs": 10, "lr": 0.0001, "r": 16, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr1e-4-ep10", "max_prompts": 0}
+Loading weights:   0%|          | 0/138 [00:00<?, ?it/s]Loading weights: 100%|██████████| 138/138 [00:00<00:00, 3559.02it/s]
+{"model": "ModernBERT-base", "kind": "fold", "fold": 3, "acc": 0.5704, "pool_only": 0.5556, "mins": 9.2, "mode": "oof", "folds": 5, "outer": 3, "epochs": 10, "lr": 0.0001, "r": 16, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr1e-4-ep10", "max_prompts": 0}
+Loading weights:   0%|          | 0/138 [00:00<?, ?it/s]Loading weights: 100%|██████████| 138/138 [00:00<00:00, 3603.78it/s]
+{"model": "ModernBERT-base", "kind": "fold", "fold": 4, "acc": 0.5492, "pool_only": 0.5696, "mins": 11.6, "mode": "oof", "folds": 5, "outer": 3, "epochs": 10, "lr": 0.0001, "r": 16, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr1e-4-ep10", "max_prompts": 0}
+{"model": "ModernBERT-base", "kind": "oof", "epoch": 1, "select": 0.5655, "holdout": 0.513, "all": 0.555, "mode": "oof", "folds": 5, "outer": 3, "epochs": 10, "lr": 0.0001, "r": 16, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr1e-4-ep10", "max_prompts": 0}
+{"model": "ModernBERT-base", "kind": "oof", "epoch": 2, "select": 0.5683, "holdout": 0.5167, "all": 0.558, "mode": "oof", "folds": 5, "outer": 3, "epochs": 10, "lr": 0.0001, "r": 16, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr1e-4-ep10", "max_prompts": 0}
+{"model": "ModernBERT-base", "kind": "oof", "epoch": 3, "select": 0.573, "holdout": 0.5148, "all": 0.5613, "mode": "oof", "folds": 5, "outer": 3, "epochs": 10, "lr": 0.0001, "r": 16, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr1e-4-ep10", "max_prompts": 0}
+{"model": "ModernBERT-base", "kind": "oof", "epoch": 4, "select": 0.5651, "holdout": 0.5333, "all": 0.5587, "mode": "oof", "folds": 5, "outer": 3, "epochs": 10, "lr": 0.0001, "r": 16, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr1e-4-ep10", "max_prompts": 0}
+{"model": "ModernBERT-base", "kind": "oof", "epoch": 5, "select": 0.5674, "holdout": 0.5278, "all": 0.5595, "mode": "oof", "folds": 5, "outer": 3, "epochs": 10, "lr": 0.0001, "r": 16, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr1e-4-ep10", "max_prompts": 0}
+{"model": "ModernBERT-base", "kind": "oof", "epoch": 6, "select": 0.5535, "holdout": 0.5148, "all": 0.5458, "mode": "oof", "folds": 5, "outer": 3, "epochs": 10, "lr": 0.0001, "r": 16, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr1e-4-ep10", "max_prompts": 0}
+{"model": "ModernBERT-base", "kind": "oof", "epoch": 7, "select": 0.5553, "holdout": 0.5019, "all": 0.5446, "mode": "oof", "folds": 5, "outer": 3, "epochs": 10, "lr": 0.0001, "r": 16, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr1e-4-ep10", "max_prompts": 0}
+{"model": "ModernBERT-base", "kind": "oof", "epoch": 8, "select": 0.5512, "holdout": 0.5093, "all": 0.5428, "mode": "oof", "folds": 5, "outer": 3, "epochs": 10, "lr": 0.0001, "r": 16, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr1e-4-ep10", "max_prompts": 0}
+{"model": "ModernBERT-base", "kind": "oof", "epoch": 9, "select": 0.5484, "holdout": 0.5167, "all": 0.5421, "mode": "oof", "folds": 5, "outer": 3, "epochs": 10, "lr": 0.0001, "r": 16, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr1e-4-ep10", "max_prompts": 0}
+{"model": "ModernBERT-base", "kind": "oof", "epoch": 10, "select": 0.5498, "holdout": 0.513, "all": 0.5424, "mode": "oof", "folds": 5, "outer": 3, "epochs": 10, "lr": 0.0001, "r": 16, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr1e-4-ep10", "max_prompts": 0}
+pool only: select 0.5595 holdout 0.5037 all 0.5484; 12 min
+done, 11.6 min
+ModernBERT-lora-5fold-lr1e-4-ep10 5-fold-oof       mean 0.5423 +/- 0.0247 | 0.496 0.544 0.552 0.570 0.549
+== lr 3e-4 start 07:42:48
+Loading weights:   0%|          | 0/138 [00:00<?, ?it/s]Loading weights: 100%|██████████| 138/138 [00:00<00:00, 3727.55it/s]
+{"model": "ModernBERT-base", "kind": "fold", "fold": 0, "acc": 0.4907, "pool_only": 0.4889, "mins": 2.3, "mode": "oof", "folds": 5, "outer": 3, "epochs": 10, "lr": 0.0003, "r": 16, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr3e-4-ep10", "max_prompts": 0}
+Loading weights:   0%|          | 0/138 [00:00<?, ?it/s]Loading weights: 100%|██████████| 138/138 [00:00<00:00, 3635.56it/s]
+{"model": "ModernBERT-base", "kind": "fold", "fold": 1, "acc": 0.5296, "pool_only": 0.5537, "mins": 4.6, "mode": "oof", "folds": 5, "outer": 3, "epochs": 10, "lr": 0.0003, "r": 16, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr3e-4-ep10", "max_prompts": 0}
+Loading weights:   0%|          | 0/138 [00:00<?, ?it/s]Loading weights: 100%|██████████| 138/138 [00:00<00:00, 3626.74it/s]
+{"model": "ModernBERT-base", "kind": "fold", "fold": 2, "acc": 0.5352, "pool_only": 0.5741, "mins": 6.9, "mode": "oof", "folds": 5, "outer": 3, "epochs": 10, "lr": 0.0003, "r": 16, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr3e-4-ep10", "max_prompts": 0}
+Loading weights:   0%|          | 0/138 [00:00<?, ?it/s]Loading weights: 100%|██████████| 138/138 [00:00<00:00, 3550.96it/s]
+{"model": "ModernBERT-base", "kind": "fold", "fold": 3, "acc": 0.5704, "pool_only": 0.5556, "mins": 9.2, "mode": "oof", "folds": 5, "outer": 3, "epochs": 10, "lr": 0.0003, "r": 16, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr3e-4-ep10", "max_prompts": 0}
+Loading weights:   0%|          | 0/138 [00:00<?, ?it/s]Loading weights: 100%|██████████| 138/138 [00:00<00:00, 3535.13it/s]
+{"model": "ModernBERT-base", "kind": "fold", "fold": 4, "acc": 0.5288, "pool_only": 0.5696, "mins": 11.5, "mode": "oof", "folds": 5, "outer": 3, "epochs": 10, "lr": 0.0003, "r": 16, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr3e-4-ep10", "max_prompts": 0}
+{"model": "ModernBERT-base", "kind": "oof", "epoch": 1, "select": 0.5521, "holdout": 0.5185, "all": 0.5454, "mode": "oof", "folds": 5, "outer": 3, "epochs": 10, "lr": 0.0003, "r": 16, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr3e-4-ep10", "max_prompts": 0}
+{"model": "ModernBERT-base", "kind": "oof", "epoch": 2, "select": 0.5507, "holdout": 0.5037, "all": 0.5413, "mode": "oof", "folds": 5, "outer": 3, "epochs": 10, "lr": 0.0003, "r": 16, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr3e-4-ep10", "max_prompts": 0}
+{"model": "ModernBERT-base", "kind": "oof", "epoch": 3, "select": 0.547, "holdout": 0.5204, "all": 0.5417, "mode": "oof", "folds": 5, "outer": 3, "epochs": 10, "lr": 0.0003, "r": 16, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr3e-4-ep10", "max_prompts": 0}
+{"model": "ModernBERT-base", "kind": "oof", "epoch": 4, "select": 0.5461, "holdout": 0.513, "all": 0.5395, "mode": "oof", "folds": 5, "outer": 3, "epochs": 10, "lr": 0.0003, "r": 16, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr3e-4-ep10", "max_prompts": 0}
+{"model": "ModernBERT-base", "kind": "oof", "epoch": 5, "select": 0.5322, "holdout": 0.5037, "all": 0.5265, "mode": "oof", "folds": 5, "outer": 3, "epochs": 10, "lr": 0.0003, "r": 16, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr3e-4-ep10", "max_prompts": 0}
+{"model": "ModernBERT-base", "kind": "oof", "epoch": 6, "select": 0.5336, "holdout": 0.5389, "all": 0.5346, "mode": "oof", "folds": 5, "outer": 3, "epochs": 10, "lr": 0.0003, "r": 16, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr3e-4-ep10", "max_prompts": 0}
+{"model": "ModernBERT-base", "kind": "oof", "epoch": 7, "select": 0.5303, "holdout": 0.5296, "all": 0.5302, "mode": "oof", "folds": 5, "outer": 3, "epochs": 10, "lr": 0.0003, "r": 16, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr3e-4-ep10", "max_prompts": 0}
+{"model": "ModernBERT-base", "kind": "oof", "epoch": 8, "select": 0.5327, "holdout": 0.5259, "all": 0.5313, "mode": "oof", "folds": 5, "outer": 3, "epochs": 10, "lr": 0.0003, "r": 16, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr3e-4-ep10", "max_prompts": 0}
+{"model": "ModernBERT-base", "kind": "oof", "epoch": 9, "select": 0.5285, "holdout": 0.5333, "all": 0.5295, "mode": "oof", "folds": 5, "outer": 3, "epochs": 10, "lr": 0.0003, "r": 16, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr3e-4-ep10", "max_prompts": 0}
+{"model": "ModernBERT-base", "kind": "oof", "epoch": 10, "select": 0.5303, "holdout": 0.5333, "all": 0.5309, "mode": "oof", "folds": 5, "outer": 3, "epochs": 10, "lr": 0.0003, "r": 16, "bs": 32, "maxlen": 384, "seed": 0, "tag": "-lr3e-4-ep10", "max_prompts": 0}
+pool only: select 0.5595 holdout 0.5037 all 0.5484; 12 min
+done, 11.6 min
+ModernBERT-lora-5fold-lr3e-4-ep10 5-fold-oof       mean 0.5308 +/- 0.0253 | 0.491 0.530 0.535 0.570 0.528

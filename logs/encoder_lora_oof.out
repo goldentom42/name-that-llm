@@ -1,0 +1,23 @@
+Loading weights:   0%|          | 0/138 [00:00<?, ?it/s]Loading weights: 100%|██████████| 138/138 [00:00<00:00, 1603.26it/s]
+{"model": "ModernBERT-base", "kind": "fold", "fold": 0, "acc": 0.5278, "pool_only": 0.4889, "mins": 1.4, "mode": "oof", "folds": 5, "outer": 3, "epochs": 6, "lr": 0.0001, "r": 16, "bs": 32, "maxlen": 384, "seed": 0, "tag": "", "max_prompts": 0}
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s]Writing model shards: 100%|██████████| 1/1 [00:00<00:00,  1.62it/s]Writing model shards: 100%|██████████| 1/1 [00:00<00:00,  1.62it/s]
+Loading weights:   0%|          | 0/138 [00:00<?, ?it/s]Loading weights: 100%|██████████| 138/138 [00:00<00:00, 3647.31it/s]
+{"model": "ModernBERT-base", "kind": "fold", "fold": 1, "acc": 0.5722, "pool_only": 0.5537, "mins": 2.8, "mode": "oof", "folds": 5, "outer": 3, "epochs": 6, "lr": 0.0001, "r": 16, "bs": 32, "maxlen": 384, "seed": 0, "tag": "", "max_prompts": 0}
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s]Writing model shards: 100%|██████████| 1/1 [00:00<00:00,  1.64it/s]Writing model shards: 100%|██████████| 1/1 [00:00<00:00,  1.64it/s]
+Loading weights:   0%|          | 0/138 [00:00<?, ?it/s]Loading weights: 100%|██████████| 138/138 [00:00<00:00, 3591.95it/s]
+{"model": "ModernBERT-base", "kind": "fold", "fold": 2, "acc": 0.5796, "pool_only": 0.5741, "mins": 4.2, "mode": "oof", "folds": 5, "outer": 3, "epochs": 6, "lr": 0.0001, "r": 16, "bs": 32, "maxlen": 384, "seed": 0, "tag": "", "max_prompts": 0}
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s]Writing model shards: 100%|██████████| 1/1 [00:00<00:00,  1.65it/s]Writing model shards: 100%|██████████| 1/1 [00:00<00:00,  1.65it/s]
+Loading weights:   0%|          | 0/138 [00:00<?, ?it/s]Loading weights: 100%|██████████| 138/138 [00:00<00:00, 3770.36it/s]
+{"model": "ModernBERT-base", "kind": "fold", "fold": 3, "acc": 0.6037, "pool_only": 0.5556, "mins": 5.6, "mode": "oof", "folds": 5, "outer": 3, "epochs": 6, "lr": 0.0001, "r": 16, "bs": 32, "maxlen": 384, "seed": 0, "tag": "", "max_prompts": 0}
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s]Writing model shards: 100%|██████████| 1/1 [00:00<00:00,  1.64it/s]Writing model shards: 100%|██████████| 1/1 [00:00<00:00,  1.64it/s]
+Loading weights:   0%|          | 0/138 [00:00<?, ?it/s]Loading weights: 100%|██████████| 138/138 [00:00<00:00, 3686.01it/s]
+{"model": "ModernBERT-base", "kind": "fold", "fold": 4, "acc": 0.5696, "pool_only": 0.5696, "mins": 7.0, "mode": "oof", "folds": 5, "outer": 3, "epochs": 6, "lr": 0.0001, "r": 16, "bs": 32, "maxlen": 384, "seed": 0, "tag": "", "max_prompts": 0}
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s]Writing model shards: 100%|██████████| 1/1 [00:00<00:00,  1.63it/s]Writing model shards: 100%|██████████| 1/1 [00:00<00:00,  1.63it/s]
+{"model": "ModernBERT-base", "kind": "oof", "epoch": 1, "select": 0.5637, "holdout": 0.5111, "all": 0.5532, "mode": "oof", "folds": 5, "outer": 3, "epochs": 6, "lr": 0.0001, "r": 16, "bs": 32, "maxlen": 384, "seed": 0, "tag": "", "max_prompts": 0}
+{"model": "ModernBERT-base", "kind": "oof", "epoch": 2, "select": 0.5716, "holdout": 0.5278, "all": 0.5628, "mode": "oof", "folds": 5, "outer": 3, "epochs": 6, "lr": 0.0001, "r": 16, "bs": 32, "maxlen": 384, "seed": 0, "tag": "", "max_prompts": 0}
+{"model": "ModernBERT-base", "kind": "oof", "epoch": 3, "select": 0.5771, "holdout": 0.5093, "all": 0.5635, "mode": "oof", "folds": 5, "outer": 3, "epochs": 6, "lr": 0.0001, "r": 16, "bs": 32, "maxlen": 384, "seed": 0, "tag": "", "max_prompts": 0}
+{"model": "ModernBERT-base", "kind": "oof", "epoch": 4, "select": 0.5757, "holdout": 0.5148, "all": 0.5635, "mode": "oof", "folds": 5, "outer": 3, "epochs": 6, "lr": 0.0001, "r": 16, "bs": 32, "maxlen": 384, "seed": 0, "tag": "", "max_prompts": 0}
+{"model": "ModernBERT-base", "kind": "oof", "epoch": 5, "select": 0.579, "holdout": 0.5241, "all": 0.568, "mode": "oof", "folds": 5, "outer": 3, "epochs": 6, "lr": 0.0001, "r": 16, "bs": 32, "maxlen": 384, "seed": 0, "tag": "", "max_prompts": 0}
+{"model": "ModernBERT-base", "kind": "oof", "epoch": 6, "select": 0.5822, "holdout": 0.5241, "all": 0.5706, "mode": "oof", "folds": 5, "outer": 3, "epochs": 6, "lr": 0.0001, "r": 16, "bs": 32, "maxlen": 384, "seed": 0, "tag": "", "max_prompts": 0}
+pool only: select 0.5595 holdout 0.5037 all 0.5484; 7 min
+done, 7.0 min
